@@ -1,6 +1,21 @@
 <?php
 
 /**
+ * Create sanitized url from slug and title.
+ * @return sanitized url
+ */
+function wpmanga_getUrl($slug,$title) {
+	if(!empty($slug)) {
+		$res = get_sSanitizedSlug($slug);
+	}
+	else {
+		//if no url is provided, we use the title as url
+		$res = get_sSanitizedSlug($title);
+	}
+	return $res;
+}
+
+/**
  * Display Administrative Menu for Projects.
  * @return menu
  */
@@ -34,16 +49,22 @@ function wpmanga_dataProject() {
 				}
 				
 				$custom_settings = json_encode(array('chapter' => $_POST['custom_chapter'], 'subchapter' => $_POST['custom_subchapter']));
-				$data = array('category' => $_POST['category'], 'slug' => get_sSanitizedSlug($_POST['title']), 'title' => $_POST['title'], 'title_alt' => $_POST['title_alt'], 'description' => $_POST['description'], 'author' => $_POST['author'], 'genre' => $_POST['genre'], 'status' => $_POST['status'], 'image' => $_POST['image'], 'reader' => $_POST['reader'], 'url' => $_POST['url'], 'mature' => $_POST['mature'], 'custom' => $custom_settings);
+				$data = array('category' => $_POST['category'], 'slug' => wpmanga_getUrl($_POST['slug'], $_POST['title']), 'title' => $_POST['title'], 'title_alt' => $_POST['title_alt'], 'description' => $_POST['description'], 'author' => $_POST['author'], 'genre' => $_POST['genre'], 'status' => $_POST['status'], 'image' => $_POST['image'], 'reader' => $_POST['reader'], 'url' => $_POST['url'], 'mature' => $_POST['mature'], 'custom' => $custom_settings);
 				
 				switch ($action) {
 					case 'edit':
-						$status = $wpdb->update($wpdb->prefix . 'projects', $data, array('id' => $_GET['id']));
+						$check = $wpdb->query($wpdb->prepare("SELECT `slug` FROM `" . $wpdb->prefix . "projects` WHERE `id` <>" . $_GET['id'] . " and `slug` = '%s'", wpmanga_getUrl($_POST['slug'], $_POST['title'])));
+						if (!$check) {
+							$status = $wpdb->update($wpdb->prefix . 'projects', $data, array('id' => $_GET['id']));
 						
-						if ($status)
-							echo '<div class="updated"><p>Updated Project Information for <i>' . $_POST['title'] . '</i>.</p></div>';
-						else
-							echo '<div class="error"><p>Error: Failed to update information.</p></div>';
+							if ($status)
+								echo '<div class="updated"><p>Updated Project Information for <i>' . $_POST['title'] . '</i>.</p></div>';
+							else
+								echo '<div class="error"><p>Error: Failed to update information.</p></div>';
+						}
+						else {
+							echo '<div class="error"><p>Error: Failed to edit project. (Duplicate Url)</p></div>';
+						}
 						break;
 						
 					case 'delete':
@@ -57,7 +78,7 @@ function wpmanga_dataProject() {
 						break;
 						
 					default:
-						$check = $wpdb->query($wpdb->prepare("SELECT `slug` FROM `" . $wpdb->prefix . "projects` WHERE `slug` = '%s'", get_sSanitizedSlug($_POST['title'])));
+						$check = $wpdb->query($wpdb->prepare("SELECT `slug` FROM `" . $wpdb->prefix . "projects` WHERE `slug` = '%s'", wpmanga_getUrl($_POST['slug'], $_POST['title'])));
 						if (!$check) {
 							$wpdb->insert($wpdb->prefix . 'projects', $data);
 					
@@ -66,7 +87,7 @@ function wpmanga_dataProject() {
 							else
 								echo '<div class="error"><p>Error: Failed to add new project.</p></div>';
 						} else {
-							echo '<div class="error"><p>Error: Failed to add new project. (Duplicate Title)</p></div>';
+							echo '<div class="error"><p>Error: Failed to add new project. (Duplicate Url)</p></div>';
 						}
 				}
 			} else {
@@ -128,7 +149,12 @@ function wpmanga_dataProject() {
 					<th scope="row"><label for="title_alt">Alternative Title</label></th>
 					<td><input name="title_alt" id="title_alt" type="text" value="<?php if (isset($project)) echo $project->title_alt; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>></td>
 				</tr>
-				
+
+				<tr class="form-field">
+					<th scope="row"><label for="title_alt">Url (blank for auto-generated url)</label></th>
+					<td><input name="slug" id="slug" type="text" value="<?php if (isset($project)) echo $project->slug; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>></td>
+				</tr>
+
 				<tr class="form-field">
 					<th scope="row"><label for="author">Author & Artist</label></th>
 					<td><input name="author" id="author" type="text" value="<?php if (isset($project)) echo $project->author; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>></td>
