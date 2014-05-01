@@ -170,6 +170,31 @@ function footer_sProjects() {
 }
 
 /**
+ * Modifies Head to add real canonical url instead of the base page one
+ */
+remove_action('wp_head', 'rel_canonical');
+add_action('wp_head', 'wpmanga_rel_canonical');
+function wpmanga_rel_canonical() {
+	if ( !is_singular() )
+		return;
+
+	//Check wpmanga project pages first
+	$link = get_sPermalink();
+
+	if (!$link) {
+		global $wp_the_query;
+		if ( !$id = $wp_the_query->get_queried_object_id() )
+			return;
+
+		$link = get_permalink( $id );
+		if ( $page = get_query_var('cpage') )
+		$link = get_comments_pagenum_link( $page );
+	}
+
+	echo "<link rel='canonical' href='$link' />\n";
+}
+
+/**
  * Obtain the path to the template specified.
  * @param string $template Template filename
  * @return string Path to the template

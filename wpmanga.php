@@ -361,12 +361,16 @@ function get_sPermalink($project = NULL) {
 		$id = (int) $project;
 		$project = $wpdb->get_row($wpdb->prepare("SELECT `id`, `slug` FROM `{$wpdb->prefix}projects` WHERE `id` = '%d' ORDER BY `title` ASC", $id));
 	}
-	$projectDirUrl = wpmanga_get('wpmanga_projectslist_url', 'projects');
 
-	if ($project->slug != NULL)
-		return (string) get_bloginfo('siteurl') . "/$projectDirUrl/" . $project->slug . '/';
-	else
-		return (string) get_bloginfo('siteurl') . "/$projectDirUrl/" . $project->id . '/';
+	if ($project){
+		$projectDirUrl = wpmanga_get('wpmanga_projectslist_url', 'projects');
+		if ($project->slug != NULL)
+			return (string) get_bloginfo('siteurl') . "/$projectDirUrl/" . $project->slug . '/';
+		else
+			return (string) get_bloginfo('siteurl') . "/$projectDirUrl/" . $project->id . '/';
+	}
+	//else
+	return NULL;
 }
 
 /**
