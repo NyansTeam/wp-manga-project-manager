@@ -248,6 +248,20 @@ function wpmanga_settings() {
 									</td>
 								</tr>
 
+								<tr class="form">
+									<td width="250px"><label for="wpmanga_projectslist_url">Projects List Url</label></td>
+									<td>
+										<input name="wpmanga_projectslist_url" id="wpmanga_projectslist_url" type="text" placeholder="projects" value="<?php echo wpmanga_get('wpmanga_projectslist_url', 'projects'); ?>" style="width: 100%;">
+									</td>
+								</tr>
+
+								<tr class="form">
+									<td width="250px"><label for="wpmanga_projectslist_title">Projects List Title</label></td>
+									<td>
+										<input name="wpmanga_projectslist_title" id="wpmanga_projectslist_title" type="text" placeholder="projects" value="<?php echo wpmanga_get('wpmanga_projectslist_title', 'projects'); ?>" style="width: 100%;">
+									</td>
+								</tr>
+
 								<tr class="form-field">
 									<td valign="top" style="padding-top: 10px;" width="250px"><label for="wpmanga_delay">Delay Download Link</label></td>
 									<td>
