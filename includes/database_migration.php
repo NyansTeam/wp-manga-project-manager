@@ -36,6 +36,11 @@ function modify_sDatabase() {
 		include('migration/004.php');
 		update_option("wpmanga_db", 4);
 	}
+	// Database Migration: 005
+	if ($migration <= 5) {
+		include('migration/005.php');
+		update_option("wpmanga_db", 5);
+	}
 }
 
 /* EOF: includes/database_migration.php */

@@ -305,6 +305,13 @@ function wpmanga_settings() {
 										<input type="checkbox" name="wpmanga_disable_pdf" id="wpmanga_disable_pdf" value="1" <?php if (wpmanga_get('wpmanga_disable_pdf', 0)) echo 'checked="checked"' ?> style="width: 20px;"> <label for="wpmanga_disable_pdf">PDF</label>
 									</td>
 								</tr>
+
+								<tr class="form">
+									<td width="250px"><label for="wpmanga_release_statuspublished">Release publication status (0 for auto publish)</label></td>
+									<td>
+										<input name="wpmanga_release_statuspublished" id="wpmanga_release_statuspublished" type="text" value="<?php echo wpmanga_get('wpmanga_release_statuspublished', ''); ?>" style="width: 100%;">
+									</td>
+								</tr>
 							</table>
 
 							&nbsp; <input type="submit" class="button-primary" name="save" value="Save Settings"><br><br>

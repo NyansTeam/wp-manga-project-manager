@@ -80,11 +80,18 @@ function get_sListProject() {
  * @param integer $limit Limit the number of results returned.
  * @return object
  */
-function get_sListLatest($limit = 5, $all = FALSE) {
+function get_sListLatest($limit = 5, $all = FALSE, $onlypublished = FALSE) {
 	global $wpdb;
 
 	if ($all)
 		$display = "WHERE `unixtime_mod` <= '" . time() . "'";
+	elseif ($onlypublished){
+		$publishedstatus = wpmanga_get('wpmanga_release_statuspublished',0);
+		if ($publishedstatus != 0)
+		{
+			$display = "WHERE `status` = " . $publishedstatus;
+		}
+	}
 	else
 		$display = '';
 
@@ -180,11 +187,18 @@ function get_sProjectVolumes($project) {
  * @param integer|string $project Query the integer/string to obtain ID.
  * @return object
  */
-function get_sProjectReleasesByVolume($project, $volume, $all = FALSE) {
+function get_sProjectReleasesByVolume($project, $volume, $all = FALSE, $onlypublished = FALSE) {
 	global $wp, $wpdb;
 
 	if ($all)
 		$display = "AND `unixtime_mod` <= '" . time() . "'";
+	elseif ($onlypublished){
+		$publishedstatus = wpmanga_get('wpmanga_release_statuspublished',0);
+		if ($publishedstatus != 0)
+		{
+			$display = "AND `status` = " . $publishedstatus;
+		}
+	}
 	else
 		$display = '';
 
@@ -197,11 +211,18 @@ function get_sProjectReleasesByVolume($project, $volume, $all = FALSE) {
  * @param integer|string $project Query the integer/string to obtain ID.
  * @return object
  */
-function get_sProjectReleases($project, $all = FALSE) {
+function get_sProjectReleases($project, $all = FALSE, $onlypublished = FALSE) {
 	global $wp, $wpdb;
 
 	if ($all)
 		$display = "AND `unixtime_mod` <= '" . time() . "'";
+	elseif ($onlypublished){
+		$publishedstatus = wpmanga_get('wpmanga_release_statuspublished',0);
+		if ($publishedstatus != 0)
+		{
+			$display = "AND `status` = " . $publishedstatus;
+		}
+	}
 	else
 		$display = '';
 
@@ -248,11 +269,19 @@ function get_sRelease($id) {
  * @param integer $project Query the integer to obtain ID.
  * @return object
  */
-function get_sLastRelease($id) {
+function get_sLastRelease($id, $onlypublished = FALSE) {
 	global $wpdb;
 
+	if ($onlypublished){
+		$publishedstatus = wpmanga_get('wpmanga_release_statuspublished',0);
+		if ($publishedstatus != 0)
+		{
+			$display = "AND `status` = " . $publishedstatus;
+		}
+	}
+
 	#$release = $wpdb->get_row($wpdb->prepare("SELECT * FROM `{$wpdb->prefix}projects_releases` WHERE `project_id` = '%d' ORDER BY `volume` DESC, `chapter` DESC, `subchapter` DESC LIMIT 1", $id));
-	$release = $wpdb->get_row($wpdb->prepare("SELECT * FROM `{$wpdb->prefix}projects_releases` WHERE `project_id` = '%d' ORDER BY `unixtime_mod` DESC, `unixtime` DESC LIMIT 1", $id));
+	$release = $wpdb->get_row($wpdb->prepare("SELECT * FROM `{$wpdb->prefix}projects_releases` WHERE `project_id` = '%d' {$display} ORDER BY `unixtime_mod` DESC, `unixtime` DESC LIMIT 1", $id));
 	return $release;
 }
 

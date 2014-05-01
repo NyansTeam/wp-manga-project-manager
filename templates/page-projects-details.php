@@ -86,7 +86,7 @@
 							<?php
 								echo "<div style='float: left; padding: 2px;'><img src='{$volume->image}' title='Volume {$volume->volume}' alt='Volume {$volume->volume}' class='volume'></div>";
 								
-								$releases = get_sProjectReleasesByVolume($project->id, $volume->volume);
+								$releases = get_sProjectReleasesByVolume($project->id, $volume->volume,false,true);
 								
 								foreach ($releases as $release) {
 									$_volumes[$release->id] = true;
@@ -123,7 +123,7 @@
 				}
 
 				/* Generate Remaining Releases */
-				$releases = get_sProjectReleases($project->id);
+				$releases = get_sProjectReleases($project->id,false,true);
 			?>
 			
 				<div class="list">

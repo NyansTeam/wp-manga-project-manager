@@ -47,7 +47,7 @@ function wpmanga_dataRelease() {
 					if ($_POST['revision'] > $edit->revision) $_POST['unixtime_mod'] = time();
 				}
 
-				$data = array('project_id' => $_POST['project_id'], 'unixtime' => $_POST['unixtime'], 'unixtime_mod' => $_POST['unixtime_mod'], 'volume' => $_POST['volume'], 'chapter' => $_POST['chapter'], 'subchapter' => $_POST['subchapter'], 'revision' => $_POST['revision'], 'type' => $_POST['type'], 'title' => $_POST['title'], 'download_megaupload' => $_POST['download_megaupload'], 'download_mediafire' => $_POST['download_mediafire'], 'download_depositfiles' => $_POST['download_depositfiles'], 'download_fileserve' => $_POST['download_fileserve'], 'download_filesonic' => $_POST['download_filesonic'], 'download_pdf' => $_POST['download_pdf'], 'download_irc' => $_POST['download_irc'], 'link_reader' => $_POST['link_reader'], 'language' => $_POST['language']);
+				$data = array('project_id' => $_POST['project_id'], 'unixtime' => $_POST['unixtime'], 'unixtime_mod' => $_POST['unixtime_mod'], 'volume' => $_POST['volume'], 'chapter' => $_POST['chapter'], 'subchapter' => $_POST['subchapter'], 'revision' => $_POST['revision'], 'type' => $_POST['type'], 'title' => $_POST['title'], 'download_megaupload' => $_POST['download_megaupload'], 'download_mediafire' => $_POST['download_mediafire'], 'download_depositfiles' => $_POST['download_depositfiles'], 'download_fileserve' => $_POST['download_fileserve'], 'download_filesonic' => $_POST['download_filesonic'], 'download_pdf' => $_POST['download_pdf'], 'download_irc' => $_POST['download_irc'], 'link_reader' => $_POST['link_reader'], 'language' => $_POST['language'], 'status' => $_POST['status']);
 
 				switch ($action) {
 					case 'edit':
@@ -255,6 +255,13 @@ function wpmanga_dataRelease() {
 							</script>
 						</td>
 					</tr>
+					<?php if (wpmanga_get('wpmanga_release_statuspublished',0) != 0) { ?>
+					<tr class="form-field">
+						<th scope="row"><label for="status">Status</label></th>
+						<td><input name="status" id="status" type="number" value="<?php if (isset($release)) echo $release->status; else echo '0'; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>></td>
+					</tr>
+					<?php } ?>
+
 				</table>
 
 				<p class="submit">

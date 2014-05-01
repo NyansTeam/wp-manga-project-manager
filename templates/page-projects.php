@@ -20,7 +20,7 @@
 			<?php
 				$projects = get_sListProject();
 				foreach ($projects as $project) {
-					$lastRelease = get_sLastRelease($project->id);
+					$lastRelease = get_sLastRelease($project->id, true);
 					if ($project->image) $project->image = get_sThumbnail('60x60', $project->image);
 					unset($project->custom);
 					unset($project->hit);

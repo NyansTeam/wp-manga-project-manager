@@ -1,6 +1,6 @@
 <ul class="latest-release-list">
 	<?php
-		$releases = get_sListLatest($numofposts);
+		$releases = get_sListLatest($numofposts,false,true);
 		
 		if ($releases) {
 			$icons = wpmanga_get('wpmanga_widget_icons', 0);
