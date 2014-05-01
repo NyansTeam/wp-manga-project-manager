@@ -153,6 +153,15 @@ function wpmanga_settings() {
 			if (!$_POST['wpmanga_disable_filesonic']) $_POST['wpmanga_disable_filesonic'] = 0;
 			if (!$_POST['wpmanga_disable_pdf']) $_POST['wpmanga_disable_pdf'] = 0;
 
+			//Url and Title not empty
+			if (!$_POST['wpmanga_projectslist_url']) {
+				$_POST['wpmanga_projectslist_url'] = 'projects';
+			}
+			else {
+				$_POST['wpmanga_projectslist_url'] = get_sSanitizedSlug($_POST['wpmanga_projectslist_url']);
+			}
+			if (!$_POST['wpmanga_projectslist_title']) $_POST['wpmanga_projectslist_title'] = 'Projects';
+
 			// Filter $_POST and Update Setting
 			$_DATA = array();
 			foreach ($_POST as $key => $value) {
@@ -251,14 +260,14 @@ function wpmanga_settings() {
 								<tr class="form">
 									<td width="250px"><label for="wpmanga_projectslist_url">Projects List Url</label></td>
 									<td>
-										<input name="wpmanga_projectslist_url" id="wpmanga_projectslist_url" type="text" placeholder="projects" value="<?php echo wpmanga_get('wpmanga_projectslist_url', 'projects'); ?>" style="width: 100%;">
+										<input name="wpmanga_projectslist_url" id="wpmanga_projectslist_url" type="text" value="<?php echo wpmanga_get('wpmanga_projectslist_url', 'projects'); ?>" style="width: 100%;">
 									</td>
 								</tr>
 
 								<tr class="form">
 									<td width="250px"><label for="wpmanga_projectslist_title">Projects List Title</label></td>
 									<td>
-										<input name="wpmanga_projectslist_title" id="wpmanga_projectslist_title" type="text" placeholder="projects" value="<?php echo wpmanga_get('wpmanga_projectslist_title', 'projects'); ?>" style="width: 100%;">
+										<input name="wpmanga_projectslist_title" id="wpmanga_projectslist_title" type="text" value="<?php echo wpmanga_get('wpmanga_projectslist_title', 'Projects'); ?>" style="width: 100%;">
 									</td>
 								</tr>
 

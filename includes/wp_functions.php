@@ -7,13 +7,13 @@
 add_filter('wp_title', 'rewrite_sWPTitle');
 function rewrite_sWPTitle($title) {
 	global $wp;
-	
+	$projectDirTitle = wpmanga_get('wpmanga_projectslist_title', 'Projects');
 	if ($wp->query_vars['pid']) {
 		$ntitle = get_sTitleProject(get_sProjectId($wp->query_vars['pid']));
 		if ($ntitle)
-			return str_replace('Projects', $ntitle, $title);
+			return str_replace($projectDirTitle, $ntitle, $title);
 		else
-			return str_replace('Projects', 'Oops!', $title);
+			return str_replace($projectDirTitle, 'Oops!', $title);
 	} else {
 		return $title;
 	}
@@ -26,7 +26,8 @@ function rewrite_sWPTitle($title) {
 add_action('wp_loaded', 'flush_sProjects');
 function flush_sProjects() {
 	$rewrite = get_option('rewrite_rules');
-	if (!isset($rewrite['projects/([^/]+)/?$'])) {
+	$projectDirUrl = wpmanga_get('wpmanga_projectslist_url', 'projects');
+	if (!isset($rewrite[$projectDirUrl.'/([^/]+)/?$'])) {
 		global $wp_rewrite;
 		$wp_rewrite->flush_rules();
 	}
@@ -38,7 +39,8 @@ function flush_sProjects() {
  */
 add_action('init', 'rewrite_sProjects');
 function rewrite_sProjects() {
-	add_rewrite_rule('projects/([^/]+)/?$', 'index.php?pagename=projects&pid=$matches[1]', 'top');
+	$projectDirUrl = wpmanga_get('wpmanga_projectslist_url', 'projects');
+	add_rewrite_rule($projectDirUrl.'/([^/]+)/?$', 'index.php?pagename='.$projectDirUrl.'&pid=$matches[1]', 'top');
 }
 
 /**
@@ -76,14 +78,16 @@ function title_sProjects($title) {
 	global $id, $wp;
 	
 	if (wpmanga_get('wpmanga_page_details_title', 0)) return $title;
-	if ($wp->query_vars["pagename"] == 'projects' && $wp->query_vars["pid"] && $id && $title == 'Projects') {
+	$projectDirTitle = wpmanga_get('wpmanga_projectslist_title', 'Projects');
+	$projectDirUrl = wpmanga_get('wpmanga_projectslist_url', 'projects');
+	if ($wp->query_vars["pagename"] == $projectDirUrl && $wp->query_vars["pid"] && $id && $title == $projectDirTitle) {
 		$title = get_sTitleProject(get_sProjectId($wp->query_vars['pid']));
 		if ($title)
 			return $title;
 		else
 			return "Oops!";
-	} elseif ($wp->query_vars["pagename"] == 'projects' && $id && $title == 'Projects') {
-		return 'Projects';
+	} elseif ($wp->query_vars["pagename"] == $projectDirUrl && $id && $title == $projectDirTitle) {
+		return $projectDirTitle;
 	} else {
 		return $title;
 	}
@@ -97,7 +101,8 @@ add_filter('the_content', 'template_sProjects');
 function template_sProjects($content) {
 	global $wp, $wp_query, $post;
 	
-	if ($wp->query_vars["pagename"] == 'projects') {
+	$projectDirUrl = wpmanga_get('wpmanga_projectslist_url', 'projects');
+	if ($wp->query_vars["pagename"] == $projectDirUrl) {
 		if ($wp->query_vars["pid"])
 			$template = 'page-projects-details.php';
 		else
@@ -123,12 +128,13 @@ add_filter('edit_post_link', 'editlink_sProjects');
 function editlink_sProjects($link) {
 	global $id, $wp;
 	
-	if ($wp->query_vars["pagename"] == 'projects' && $wp->query_vars["pid"] && $id) {
+	$projectDirUrl = wpmanga_get('wpmanga_projectslist_url', 'projects');
+	if ($wp->query_vars["pagename"] == $projectDirUrl && $wp->query_vars["pid"] && $id) {
 		if (get_sProjectId($wp->query_vars["pid"]))
 			return preg_replace('/<(.*?)href="(.*?)"(.*?)>/i', '<\1href="' . get_bloginfo('siteurl') . '/wp-admin/admin.php?page=manga/project&action=edit&id=' . get_sProjectId($wp->query_vars["pid"]) . '"\3>', $link);
 		else
 			return preg_replace('/<(.*?)href="(.*?)"(.*?)>/i', '<\1href="' . get_bloginfo('siteurl') . '/wp-admin/admin.php?page=manga"\3>', $link);
-	} elseif ($wp->query_vars["pagename"] == 'projects' && $id) {
+	} elseif ($wp->query_vars["pagename"] == $projectDirUrl && $id) {
 		return preg_replace('/<(.*?)href="(.*?)"(.*?)>/i', '<\1href="' . get_bloginfo('siteurl') . '/wp-admin/admin.php?page=manga"\3>', $link);
 	} else {
 		return $link;
@@ -143,7 +149,8 @@ add_filter('comments_open', 'comments_sProjects');
 function comments_sProjects() {
 	global $id, $wp;
 	
-	if ($wp->query_vars["pagename"] == 'projects' && $id)
+	$projectDirUrl = wpmanga_get('wpmanga_projectslist_url', 'projects');
+	if ($wp->query_vars["pagename"] == $projectDirUrl && $id)
 		return false;
 	else
 		return true;

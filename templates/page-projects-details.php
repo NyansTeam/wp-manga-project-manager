@@ -166,7 +166,7 @@
 
 		<p><b>Error : 404 Page Not Found!</b><br><br>The page you attempted to access could not be found. It has either been moved, renamed, deleted, or never existed.</p>
 		<script type="text/javascript">
-			//window.location = "<?php echo get_bloginfo('siteurl') . '/projects/'; ?>";
+			//window.location = "<?php $projectDirUrl = wpmanga_get('wpmanga_projectslist_url', 'projects'); echo get_bloginfo('siteurl') . '/' . $projectDirUrl . '/'; ?>";
 		</script>
 <?php
 	}
