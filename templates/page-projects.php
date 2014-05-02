@@ -44,7 +44,8 @@
 			
 			var output = 'Project Details';
 			if (project[id][0].title != "") {	output = '<b>' + project[id][0].title + '</b>'; }
-			if (project[id][0].title_alt != "") {	output = output + '<br />&#12302; ' + project[id][0].title_alt + ' &#12303;<br />'; }
+			if (project[id][0].title_alt != "") {	output = output + '<br />&#12302; ' + project[id][0].title_alt + ' &#12303;'; }
+			if (project[id][0].image !="") {	output = output + '<br /><img src="' + project[id][0].image + '" />'; }
 			if (project[id][0].last_release != "") { output = output + '<br />Latest Release: ' + project[id][0].last_release; }
 			if (project[id][0].last_release_title != "") { output = output + '<br /><i>' + project[id][0].last_release_title + '</i>'; }
 			if (project[id][0].last_release_time != "") { output = output + '<br /><font size="1">(' + project[id][0].last_release_time + ')</font>'; }
@@ -67,7 +68,7 @@
 			echo '<div id="projects-wrapper">';
 			
 			foreach ($projects as $project) {
-				echo "<div class='item'><a href='" . get_sPermalink($project) . "'><img src='" . get_sThumbnail($thumbnail_width . "x" . $thumbnail_height, $project->image) . "' width='{$thumbnail_width}' height='{$thumbnail_height}' id='{$project->id}' title='{$project->name}' alt='{$project->name}'>";
+				echo "<div class='item'><a href='" . get_sPermalink($project) . "'><img src='" . get_sThumbnail($thumbnail_width . "x" . $thumbnail_height, empty($project->image_thumbnail)?$project->image:$project->image_thumbnail) . "' width='{$thumbnail_width}' height='{$thumbnail_height}' id='{$project->id}' title='{$project->name}' alt='{$project->name}'>";
 				if ($project->mature) echo "<div class='mature'>R-18</div>";
 				echo "</a></div>";
 			}

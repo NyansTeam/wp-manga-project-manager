@@ -9,7 +9,7 @@
 				$project = get_sProject($release, false);
 				
 				echo '<li>';
-					if ($icons) echo "<a href='" . get_sPermalink($project) . "' title='{$project->title}'><img src='" . get_sThumbnail('60x60', $project->image) . "' width='60' height='60' style='float: left; margin-right: 5px;' class='project-icon-thumbnail'></a>";
+					if ($icons) echo "<a href='" . get_sPermalink($project) . "' title='{$project->title}'><img src='" . get_sThumbnail('60x60', empty($project->image_thumbnail)?$project->image:$project->image_thumbnail) . "' width='60' height='60' style='float: left; margin-right: 5px;' class='project-icon-thumbnail'></a>";
 					
 					echo "<p><a href='" . get_sPermalink($project) . "#release-{$release->id}' title='{$release->title}'>{$project->title} - " . get_sFormatRelease($project, $release, false) . "</a><br><span class='latest-release-date'>";
 					if ($release->revision > 1)

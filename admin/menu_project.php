@@ -52,7 +52,7 @@ function wpmanga_listProjects() {
 				<?php foreach ($projects as $project) { ?>
 					<tr id="manga-<?php echo $project->id; ?>" <?php if ($row % 2) echo 'class="alternate" '; $row++ ?>valign="top">
 						<td style="padding-bottom: 5px;">
-							<img src="<?php echo get_sThumbnail('60x60', $project->image); ?>" style="padding: 1px; border: 1px double #878e98; border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;" width="60" height="60" alt="<?php the_title(); ?>" />
+							<img src="<?php echo get_sThumbnail('60x60', empty($project->image_thumbnail)?$project->image:$project->image_thumbnail ); ?>" style="padding: 1px; border: 1px double #878e98; border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;" width="60" height="60" alt="<?php the_title(); ?>" />
 						</td>
 						
 						<td>

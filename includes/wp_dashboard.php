@@ -21,7 +21,7 @@ function dashboard_sLatestWidgetD() {
 		<?php foreach ( $releases as $release ) { ?>
 		<?php $project = get_sProject($release->project_id, false); ?>
 	<div id="comment-87" class="comment byuser comment-author-zyki odd alt thread-odd thread-alt depth-1 comment-item approved">
-		<img src="<?php echo get_sThumbnail('60x60', $project->image); ?>" class='avatar avatar-50 photo' />
+		<img src="<?php echo get_sThumbnail('60x60', empty($project->image_thumbnail)?$project->image:$project->image_thumbnail); ?>" class='avatar avatar-50 photo' />
 		<div class="dashboard-comment-wrap">
 			<h4 class="comment-meta">
 				<?php echo $project->title; ?> - <i><?php echo get_sFormatRelease($project, $release); ?></i>

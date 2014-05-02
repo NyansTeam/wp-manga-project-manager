@@ -47,9 +47,14 @@ function wpmanga_dataProject() {
 					$thumbnail->request(plugin_sURL() . '/includes/generate_thumbnail.php?src=' . $_POST['image'] . '&w=' . wpmanga_get('wpmanga_thumbnail_list_width', 145) . '&h=' . wpmanga_get('wpmanga_thumbnail_list_height', 300));
 					$thumbnail->request(plugin_sURL() . '/includes/generate_thumbnail.php?src=' . $_POST['image'] . '&w=60&h=60');
 				}
+				if ($_POST['image_thumbnail']) {
+					$thumbnail = new WP_Http;
+					$thumbnail->request(plugin_sURL() . '/includes/generate_thumbnail.php?src=' . $_POST['image_thumbnail'] . '&w=' . wpmanga_get('wpmanga_thumbnail_list_width', 145) . '&h=' . wpmanga_get('wpmanga_thumbnail_list_height', 300));
+					$thumbnail->request(plugin_sURL() . '/includes/generate_thumbnail.php?src=' . $_POST['image_thumbnail'] . '&w=60&h=60');
+				}
 				
 				$custom_settings = json_encode(array('chapter' => $_POST['custom_chapter'], 'subchapter' => $_POST['custom_subchapter']));
-				$data = array('category' => $_POST['category'], 'slug' => wpmanga_getUrl($_POST['slug'], $_POST['title']), 'title' => $_POST['title'], 'title_alt' => $_POST['title_alt'], 'description' => $_POST['description'], 'author' => $_POST['author'], 'genre' => $_POST['genre'], 'status' => $_POST['status'], 'image' => $_POST['image'], 'reader' => $_POST['reader'], 'url' => $_POST['url'], 'mature' => $_POST['mature'], 'custom' => $custom_settings);
+				$data = array('category' => $_POST['category'], 'slug' => wpmanga_getUrl($_POST['slug'], $_POST['title']), 'title' => $_POST['title'], 'title_alt' => $_POST['title_alt'], 'description' => $_POST['description'],'description_short' => $_POST['description_short'], 'author' => $_POST['author'], 'genre' => $_POST['genre'], 'status' => $_POST['status'], 'image' => $_POST['image'],'image_thumbnail' => $_POST['image_thumbnail'], 'reader' => $_POST['reader'], 'url' => $_POST['url'], 'mature' => $_POST['mature'], 'custom' => $custom_settings);
 				
 				switch ($action) {
 					case 'edit':
@@ -166,6 +171,11 @@ function wpmanga_dataProject() {
 				</tr>
 				
 				<tr class="form-field">
+					<th scope="row"><label for="description">Short Description (optional)</label></th>
+					<td><textarea name="description_short" id="description_short"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>><?php if (isset($project)) echo $project->description_short; ?></textarea></td>
+				</tr>
+
+				<tr class="form-field">
 					<th scope="row"><label for="genre">Genre(s)</label></th>
 					<td><textarea name="genre" id="genre"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>><?php if (isset($project)) echo $project->genre; ?></textarea></td>
 				</tr>
@@ -177,7 +187,12 @@ function wpmanga_dataProject() {
 				
 				<tr class="form">
 					<th scope="row"><label for="image">Image</label></th>
-					<td><input id="image" type="url" name="image" size="66" placeholder="Enter an URL or upload an image for this project." value="<?php if (isset($project)) echo $project->image; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>><input id="<?php if ($action != 'delete') echo 'upload_image_button'; ?>" type="button" value="Upload Image"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>></td>
+					<td><input id="image" type="url" name="image" class="upload" size="66" placeholder="Enter an URL or upload an image for this project." value="<?php if (isset($project)) echo $project->image; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>><input class="<?php if ($action != 'delete') echo 'upload_image_button'; ?>" type="button" value="Upload Image"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>></td>
+				</tr>
+
+				<tr class="form">
+					<th scope="row"><label for="image_thumbnail">Image Thumbnail (optional)</label></th>
+					<td><input id="image_thumbnail" type="url" name="image_thumbnail" class="upload" size="66" placeholder="Enter an URL or upload an image thumbnail for this project." value="<?php if (isset($project)) echo $project->image_thumbnail; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>><input class="<?php if ($action != 'delete') echo 'upload_image_button'; ?>" type="button" value="Upload Image Thumbnail"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>></td>
 				</tr>
 				
 				<tr class="form-field">

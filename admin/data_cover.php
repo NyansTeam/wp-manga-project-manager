@@ -113,7 +113,7 @@ function wpmanga_dataCover() {
 					
 					<tr class="form">
 						<th scope="row"><label for="image">Image <span class="description">(required)</span></label></th>
-						<td><input id="image" type="url" name="image" size="66" placeholder="Enter an URL or upload an image cover for this volume." value="<?php if (isset($cover)) echo $cover->image; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?> required><input id="<?php if ($action != 'delete') echo 'upload_image_button'; ?>" type="button" value="Upload Image"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>></td>
+						<td><input id="image" type="url" name="image" class="upload" size="66" placeholder="Enter an URL or upload an image cover for this volume." value="<?php if (isset($cover)) echo $cover->image; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?> required><input class="<?php if ($action != 'delete') echo 'upload_image_button'; ?>" type="button" value="Upload Image"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>></td>
 					</tr>
 				</table>
 				
