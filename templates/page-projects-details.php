@@ -55,19 +55,27 @@
 					<span class="header">Status in Country of Origin</span><br>
 					<span class="description"><?php if ($project->status) echo $project->status; else echo "N/A"; ?></span>
 				</p>
+				<?php if ($project->team_origin) { ?>
+				<p>
+					<span class="header">Team US</span><br>
+					<span class="description"><?php echo $project->team_origin; ?></span>
+				</p>
+				<?php } ?>
+				<?php
+					if ($project->reader || $project->url) {
+				?>
 				<p>
 					<span class="header">Links</span><br>
 					<span class="description">
 					<?php
-						if ($project->reader || $project->url) {
-							if ($project->url) echo "<a href='{$project->url}' target='_blank'>Manga Updates</a><br>";
-							if ($project->reader) echo "<a href='{$project->reader}' target='_blank'>Online Reader</a>";
-						} else {
-							echo 'N/A';
-						}
+						if ($project->url) echo "<a href='{$project->url}' target='_blank'>Manga Updates</a><br>";
+						if ($project->reader) echo "<a href='{$project->reader}' target='_blank'>Online Reader</a>";
 					?>
 					</span>
 				</p>
+				<?php
+				}
+				?>
 			</div>
 		</div>
 		
