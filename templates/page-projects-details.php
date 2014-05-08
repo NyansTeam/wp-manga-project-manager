@@ -95,35 +95,64 @@
 								echo "<div style='float: left; padding: 2px;'><img src='{$volume->image}' title='Volume {$volume->volume}' alt='Volume {$volume->volume}' class='volume'></div>";
 								
 								$releases = get_sProjectReleasesByVolume($project->id, $volume->volume,false,true);
-								
+								$vol_release = NULL;
 								foreach ($releases as $release) {
 									$_volumes[$release->id] = true;
-									
-									echo '<span class="title">';
-										echo "<a name='release-{$release->id}'></a>" . date('Y.m.d', $release->unixtime) . ' &nbsp;&nbsp;&nbsp; ';
-										echo get_sFormatRelease($project, $release, false);
-										if ($release->title) echo " - <i>{$release->title}</i>";
-									echo '</span>';
-										
-									echo '<span class="downloads">';
-										$downloads = get_sReleaseDownloads($release);
-										foreach ($downloads as $download => $value) {
-											$download = str_replace(array('download_depositfiles', 'download_fileserve', 'download_filesonic', 'download_mediafire', 'download_megaupload', 'download_pdf', 'download_irc'), array('DF', 'FSrv', 'FSnc', 'MF', 'MU', 'PDF', 'IRC'), $download);
+									if ($release->type == 5 || $release->type == 20 ){
+										$vol_release = $release;
+									}
+									else
+									{
+										echo '<span class="title">';
+											echo "<a name='release-{$release->id}'></a>" . date('Y.m.d', $release->unixtime) . ' &nbsp;&nbsp;&nbsp; ';
+											echo get_sFormatRelease($project, $release, false);
+											if ($release->title) echo " - <i>{$release->title}</i>";
+										echo '</span>';
 											
-											if ($value) {
-												if ($download == 'IRC')
-													echo "&nbsp; <span rel='#download-overlay' title='{$value}'><a>{$download}</a></span>";
-												else
-													echo "&nbsp; <a href='{$value}' target='_blank'>{$download}</a>";
+										echo '<span class="downloads">';
+											$downloads = get_sReleaseDownloads($release);
+											foreach ($downloads as $download => $value) {
+												$download = str_replace(array('download_depositfiles', 'download_fileserve', 'download_filesonic', 'download_mediafire', 'download_megaupload', 'download_pdf', 'download_irc'), array('DF', 'FSrv', 'FSnc', 'MF', 'Télécharger', 'PDF', 'IRC'), $download);
+												
+												if ($value) {
+													if ($download == 'IRC')
+														echo "&nbsp; <span rel='#download-overlay' title='{$value}'><a>{$download}</a></span>";
+													else
+														echo "&nbsp; <a href='{$value}' target='_blank'>{$download}</a>";
+												}
 											}
-										}
-										
-										if ($project->reader) echo '&nbsp; <a href="' . get_sReaderLink($project, $release) . '" target="_blank">RO</a>';
-									echo '</span>';
-									echo '<br>';
+											
+											$chapterUrl = get_sReaderLink($project, $release);
+											if ($chapterUrl) echo '&nbsp; <a href="' . $chapterUrl . '" target="_blank">LEL</a>';
+										echo '</span>';
+										echo '<br>';
+									}
 								}
 							?>
-							<div class="footer"><span>Volume <?php echo $volume->volume; ?></span></div>
+							<div class="footer"><span><?php 
+							if ($vol_release){
+								echo get_sFormatRelease($project, $vol_release, false);
+								if ($vol_release->title){
+									echo " - " . $vol_release->title;
+								}
+								echo '<span class="downloads">';
+									$downloads = get_sReleaseDownloads($vol_release);
+									foreach ($downloads as $download => $value) {
+										$download = str_replace(array('download_depositfiles', 'download_fileserve', 'download_filesonic', 'download_mediafire', 'download_megaupload', 'download_pdf', 'download_irc'), array('DF', 'FSrv', 'FSnc', 'MF', 'Télécharger', 'PDF', 'IRC'), $download);
+										
+										if ($value) {
+											if ($download == 'IRC')
+												echo "&nbsp; <span rel='#download-overlay' title='{$value}'><a>{$download}</a></span>";
+											else
+												echo "&nbsp; <a href='{$value}' target='_blank'>{$download}</a>";
+										}
+									}
+									
+									$volumeUrl = get_sReaderLink($project, $vol_release);
+									if ($volumeUrl) echo '&nbsp; <a href="' . $volumeUrl . '" target="_blank">LEL</a>';
+								echo '</span>';
+							}
+							?></span></div>
 						</div>
 			
 			<?php
