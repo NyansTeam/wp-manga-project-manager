@@ -366,8 +366,14 @@ function get_sReaderLink($project, $release) {
 
 		 // None: Return $reader or individual link for chapter release
 		default:
-			$url = $project->reader;
-			if ($release->link_reader) $url = $release->link_reader;
+			if ($release){
+				if ($release->link_reader){
+					$url = $release->link_reader;
+				}
+			}
+			else {
+				$url = $project->reader;
+			}
 			break;
 	}
 

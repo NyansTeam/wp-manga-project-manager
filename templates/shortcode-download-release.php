@@ -53,7 +53,8 @@
 						}
 					}
 				
-				if ($project->reader) $output .= '<li><a href="' . get_sReaderLink($project, $release) . '" target="_blank"><img src="' . plugin_sURL() . 'images/download-icon-onlinereader-32.png" title="Read ' . $project->name . ' Online"></a></li>';
+				$chapterUrl = get_sReaderLink($project, $release);
+				if ($chapterUrl) $output .= '<li><a href="' . $chapterUrl . '" target="_blank"><img src="' . plugin_sURL() . 'images/download-icon-onlinereader-32.png" title="Read ' . $project->name . ' Online"></a></li>';
 				
 				$output .= '</ul>';
 				
