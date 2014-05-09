@@ -186,8 +186,7 @@
 										}
 									}
 									
-									$chapterUrl = get_sReaderLink($project, $release);
-									if ($chapterUrl) echo '&nbsp; <a href="' . $chapterUrl . '" target="_blank">LEL</a>';
+									if ($project->reader) echo '&nbsp; <a href="' . get_sReaderLink($project, $release) . '" target="_blank">RO</a>';
 								echo '</span>';
 								echo '<br class="clear">';
 							}
