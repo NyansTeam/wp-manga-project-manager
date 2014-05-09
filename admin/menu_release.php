@@ -37,20 +37,49 @@ function wpmanga_listReleases() {
 				jQuery('.project').css( "display", "block" );
 			  }
 			}
+
+			function projectFilter(cbo) {
+			  var project = cbo.options[cbo.selectedIndex].value;
+			  if (project != '')
+			  {
+				jQuery('.project').css( "display", "none" );
+				jQuery('#proj'+project).css( "display", "block" );
+			  }
+			  else
+			  {
+				jQuery('.project').css( "display", "block" );
+			  }
+				document.getElementById("categoryCombo").selectedIndex=0;
+			}
+
+			jQuery(function($){ // DOM is now read and ready to be manipulated
+				jQuery('.finished').css( "display", "none" );
+				document.getElementById("categoryCombo").selectedIndex=1;
+				catFilter(document.getElementById("categoryCombo"));
+			});
 		</script>
 
 <?php if ($publishedstatus != 0)
 	  {
 ?>
-		<label><input type="checkbox" onclick="toggleFinishedRelease(this);" checked>Show finished releases</label><br />
+		<label><input type="checkbox" onclick="toggleFinishedRelease(this);">Show finished releases</label><br />
 <?php } ?>
 		<span>Show only projects from this category </span>
 		<select name="category" id="categoryCombo" onchange="catFilter(this)" >
 				<?php
 					$categories = get_sListCategories();
-					echo "<option value='' selected=\"selected\">None</option>";
+					echo "<option value='' selected=\"selected\">All</option>";
 					foreach ($categories as $category) {
 						echo "<option value='{$category->id}'>{$category->name}</option>";
+					}
+				?>
+		</select>
+		<span> Or only this project</span>
+		<select name="projects" id="projectsCombo" onchange="projectFilter(this)" >
+				<?php
+					echo "<option value='' selected=\"selected\">All</option>";
+					foreach ($projects as $project) {
+						echo "<option value='{$project->id}'>{$project->title}</option>";
 					}
 				?>
 		</select>
@@ -61,7 +90,7 @@ function wpmanga_listReleases() {
 				
 				if ($releases) {
 ?>
-					<div class="project cat<?php echo $project->category; ?>">
+					<div class="project cat<?php echo $project->category; ?>" id="proj<?php echo $project->id; ?>">
 					<br> &nbsp; <a href="admin.php?page=manga/project&action=edit&id=<?php echo $project->id; ?>" style="text-decoration: none; font-weight: bold"><?php echo $project->title; ?></a> &nbsp; <?php if ($project->title_alt) echo "&#12302;{$project->title_alt}&#12303;"; ?>
 					<table class="wp-list-table widefat fixed">
 						<thead>
