@@ -160,7 +160,7 @@ function comments_sProjects() {
  * Modifies Footer to add overlay code.
  * @return string
  */
-add_filter('get_footer', 'footer_sProjects');
+//add_filter('get_footer', 'footer_sProjects');
 function footer_sProjects() {
 	$channel = wpmanga_get('wpmanga_channel', '#');
 	$content = '<div class="download-overlay" id="download-overlay">';
