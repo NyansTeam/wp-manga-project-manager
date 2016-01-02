@@ -153,39 +153,39 @@ function wpmanga_dataRelease() {
 					<?php } ?>
 
 					<tr class="form">
-						<th scope="row"><label>Release Type</label></th>
+						<th scope="row"><label>Type de sortie</label></th>
 						<td>
-							<input name="type" id="normal" type="radio" value="0"<?php if (!preg_match("/(edit|delete)/i", $action)) echo ' checked="checked"'; ?><?php if (isset($release) && $release->type == 0) echo ' checked="checked"'; ?><?php if ($action == 'delete') echo ' disabled="disabled"'; ?>> <label for="normal">Chapter</label> &nbsp;
-							<input name="type" id="volumet" type="radio" value="5"<?php if (isset($release) && $release->type == 5) echo ' checked="checked"'; ?><?php if ($action == 'delete') echo ' disabled="disabled"'; ?>> <label for="volumet">Volume (Batch)</label> &nbsp;
-							<input name="type" id="special" type="radio" value="10"<?php if (isset($release) && $release->type == 10) echo ' checked="checked"'; ?><?php if ($action == 'delete') echo ' disabled="disabled"'; ?>> <label for="special">Special</label> &nbsp;
+							<input name="type" id="normal" type="radio" value="0"<?php if (!preg_match("/(edit|delete)/i", $action)) echo ' checked="checked"'; ?><?php if (isset($release) && $release->type == 0) echo ' checked="checked"'; ?><?php if ($action == 'delete') echo ' disabled="disabled"'; ?>> <label for="normal">Chapitre</label> &nbsp;
+							<input name="type" id="volumet" type="radio" value="5"<?php if (isset($release) && $release->type == 5) echo ' checked="checked"'; ?><?php if ($action == 'delete') echo ' disabled="disabled"'; ?>> <label for="volumet">Volume (repack)</label> &nbsp;
+							<input name="type" id="special" type="radio" value="10"<?php if (isset($release) && $release->type == 10) echo ' checked="checked"'; ?><?php if ($action == 'delete') echo ' disabled="disabled"'; ?>> <label for="special">Spécial</label> &nbsp;
 							<input name="type" id="oneshot" type="radio" value="20"<?php if (isset($release) && $release->type == 20) echo ' checked="checked"'; ?><?php if ($action == 'delete') echo ' disabled="disabled"'; ?>> <label for="oneshot">Oneshot</label> &nbsp;
 						</td>
 					</tr>
 
 					<tr class="form-field">
-						<th scope="row"><label for="title">Title</label></th>
+						<th scope="row"><label for="title">Titre</label></th>
 						<td><input name="title" id="title" type="text" value="<?php if (isset($release)) echo $release->title; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>></td>
 					</tr>
 
 					<tr class="form-field">
-						<th scope="row"><label for="download_depositfiles">Downloads Links</label></th>
+						<th scope="row"><label for="download_depositfiles">Liens de téléchargement</label></th>
 						<td>
-							<input name="download_depositfiles" id="download_depositfiles" type="<?php if (wpmanga_get('wpmanga_disable_depositfiles', 0)) echo 'hidden'; else 'url'; ?>" placeholder="Enter download link for Deposit Files here." style="width:90%;" value="<?php if (isset($release)) echo $release->download_depositfiles; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>>
+							<input name="download_depositfiles" id="download_depositfiles" type="<?php if (wpmanga_get('wpmanga_disable_depositfiles', 0)) echo 'hidden'; else 'url'; ?>" placeholder="Entrez le lien Deposit Files ici." style="width:90%;" value="<?php if (isset($release)) echo $release->download_depositfiles; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>>
 							<label for="download_depositfiles"><?php if (!wpmanga_get('wpmanga_disable_depositfiles', 0)) echo '<img src="' . plugin_sURL(). 'images/download-icon-depositfiles-24.png" width="24px" style="vertical-align: middle; padding-bottom: 2px"><br>'; ?></label>
 
-							<input name="download_fileserve" id="download_fileserve" type="<?php if (wpmanga_get('wpmanga_disable_fileserve', 0)) echo 'hidden'; else 'url'; ?>" placeholder="Enter download link for FileServe here." style="width:90%;" value="<?php if (isset($release)) echo $release->download_fileserve; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>>
+							<input name="download_fileserve" id="download_fileserve" type="<?php if (wpmanga_get('wpmanga_disable_fileserve', 0)) echo 'hidden'; else 'url'; ?>" placeholder="Entrez le lien FileServe ici." style="width:90%;" value="<?php if (isset($release)) echo $release->download_fileserve; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>>
 							<label for="download_fileserve"><?php if (!wpmanga_get('wpmanga_disable_fileserve', 0)) echo '<img src="' . plugin_sURL(). 'images/download-icon-fileserve-24.png" width="24px" style="vertical-align: middle; padding-bottom: 2px"><br>'; ?></label>
 
-							<input name="download_filesonic" id="download_filesonic" type="<?php if (wpmanga_get('wpmanga_disable_filesonic', 0)) echo 'hidden'; else 'url'; ?>" placeholder="Enter download link for FileSonic here." style="width:90%;" value="<?php if (isset($release)) echo $release->download_filesonic; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>>
+							<input name="download_filesonic" id="download_filesonic" type="<?php if (wpmanga_get('wpmanga_disable_filesonic', 0)) echo 'hidden'; else 'url'; ?>" placeholder="Entrez le lien FileSonic ici." style="width:90%;" value="<?php if (isset($release)) echo $release->download_filesonic; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>>
 							<label for="download_filesonic"><?php if (!wpmanga_get('wpmanga_disable_filesonic', 0)) echo '<img src="' . plugin_sURL(). 'images/download-icon-filesonic-24.png" width="24px" style="vertical-align: middle; padding-bottom: 2px"><br>'; ?></label>
 
-							<input name="download_mediafire" id="download_mediafire" type="<?php if (wpmanga_get('wpmanga_disable_mediafire', 0)) echo 'hidden'; else 'url'; ?>" placeholder="Enter download link for MediaFire here." style="width:90%;" value="<?php if (isset($release)) echo $release->download_mediafire; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>>
+							<input name="download_mediafire" id="download_mediafire" type="<?php if (wpmanga_get('wpmanga_disable_mediafire', 0)) echo 'hidden'; else 'url'; ?>" placeholder="Entrez le lien MediaFire ici." style="width:90%;" value="<?php if (isset($release)) echo $release->download_mediafire; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>>
 							<label for="download_mediafire"><?php if (!wpmanga_get('wpmanga_disable_mediafire', 0)) echo '<img src="' . plugin_sURL(). 'images/download-icon-mediafire-24.png" width="24px" style="vertical-align: middle; padding-bottom: 2px"><br>'; ?></label>
 
-							<input name="download_megaupload" id="download_megaupload" type="<?php if (wpmanga_get('wpmanga_disable_megaupload', 0)) echo 'hidden'; else 'url'; ?>" placeholder="Enter download link for MEGAUPLOAD here." style="width:90%;" value="<?php if (isset($release)) echo $release->download_megaupload; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>>
+							<input name="download_megaupload" id="download_megaupload" type="<?php if (wpmanga_get('wpmanga_disable_megaupload', 0)) echo 'hidden'; else 'url'; ?>" placeholder="Entrez le lien MEGA ici." style="width:90%;" value="<?php if (isset($release)) echo $release->download_megaupload; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>>
 							<label for="download_megaupload"><?php if (!wpmanga_get('wpmanga_disable_megaupload', 0)) echo '<img src="' . plugin_sURL(). 'images/download-icon-megaupload-24.png" width="24px" style="vertical-align: middle; padding-bottom: 2px"><br>'; ?></label>
 
-							<input name="download_pdf" id="download_pdf" type="<?php if (wpmanga_get('wpmanga_disable_pdf', 0)) echo 'hidden'; else 'url'; ?>" placeholder="Enter download link for PDF here." style="width:90%;" value="<?php if (isset($release)) echo $release->download_pdf; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>>
+							<input name="download_pdf" id="download_pdf" type="<?php if (wpmanga_get('wpmanga_disable_pdf', 0)) echo 'hidden'; else 'url'; ?>" placeholder="Entrez le lien pour le fichier PDF ici." style="width:90%;" value="<?php if (isset($release)) echo $release->download_pdf; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>>
 							<label for="download_pdf"><?php if (!wpmanga_get('wpmanga_disable_pdf', 0)) echo '<img src="' . plugin_sURL(). 'images/download-icon-pdf-24.png" width="24px" style="vertical-align: middle; padding-bottom: 2px"><br>'; ?></label>
 						</td>
 					</tr>
@@ -200,7 +200,7 @@ function wpmanga_dataRelease() {
 					</tr>
 					<?php } ?>
 					<tr class="form-field">
-						<th scope="row"><label for="language">Language</label></th>
+						<th scope="row"><label for="language">Langue</label></th>
 						<td>
 							<select name="language" id="language" style="width:460px" <?php if ($action == 'delete') echo ' readonly="readonly"'; ?>>
 								<?php
@@ -225,15 +225,15 @@ function wpmanga_dataRelease() {
 <?php // end add by busaway ?>
 
 					<tr class="form-field">
-						<th scope="row"><label for="download_irc">IRC Download Command</label></th>
+						<th scope="row"><label for="download_irc">Commande de téléchargement IRC</label></th>
 						<td>
-							<input name="download_irc" id="download_irc" type="text" placeholder="/MSG BOTNAME XDCC SEND #1  or  !TRIGGER1" style="width:91%;" value="<?php if (isset($release)) echo $release->download_irc; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>>
+							<input name="download_irc" id="download_irc" type="text" placeholder="/MSG BOTNAME XDCC SEND #1  ou  !TRIGGER1" style="width:91%;" value="<?php if (isset($release)) echo $release->download_irc; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>>
 							<label for="download_irc"><img src="<?php echo plugin_sURL(); ?>images/download-icon-irc.png" width="24px" style="vertical-align: middle; padding-bottom: 2px"></label>
 						</td>
 					</tr>
 
 					<tr class="form-field">
-						<th scope="row"><label for="unixtime">Release Date/Time</label></th>
+						<th scope="row"><label for="unixtime">Date/Heure de sortie</label></th>
 						<td>
 							<input name="unixtime_datetime" id="unixtime_datetime" type="text">
 							<input name="unixtime" id="unixtime" type="hidden" value="0">

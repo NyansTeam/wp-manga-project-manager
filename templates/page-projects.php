@@ -35,18 +35,18 @@
 					} else {
 						$project->last_release = '';
 						$project->last_release_title = '';
-						$project->last_release_time = 'No Releases Yet!';
+						$project->last_release_time = 'Pas encore de sortie!';
 					}
 					
 					echo "project[{$project->id}] = [" . json_encode($project) . "];";
 				}
 			?>
 			
-			var output = 'Project Details';
+			var output = 'Details du projet';
 			if (project[id][0].title != "") {	output = '<b>' + project[id][0].title + '</b>'; }
 			if (project[id][0].title_alt != "") {	output = output + '<br />&#12302; ' + project[id][0].title_alt + ' &#12303;'; }
 			if (project[id][0].image !="") {	output = output + '<br /><img src="' + project[id][0].image + '" />'; }
-			if (project[id][0].last_release != "") { output = output + '<br />Latest Release: ' + project[id][0].last_release; }
+			if (project[id][0].last_release != "") { output = output + '<br />Dernière sortie: ' + project[id][0].last_release; }
 			if (project[id][0].last_release_title != "") { output = output + '<br /><i>' + project[id][0].last_release_title + '</i>'; }
 			if (project[id][0].last_release_time != "") { output = output + '<br /><font size="1">(' + project[id][0].last_release_time + ')</font>'; }
 			

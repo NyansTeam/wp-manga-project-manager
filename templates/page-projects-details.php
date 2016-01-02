@@ -36,11 +36,11 @@
 			
 			<div id="project-details">
 				<p>
-					<span class="header">Project Status</span><br>
+					<span class="header">Status</span><br>
 					<span class="description"><?php echo get_sTitleCategory($project->category); ?></span>
 				</p>
 				<p>
-					<span class="header">Author(s) and Artist(s)</span><br>
+					<span class="header">Auteur(s) et Artiste(s)</span><br>
 					<span class="description"><?php if ($project->author) echo $project->author; else echo "N/A"; ?></span>
 				</p>
 				<p>
@@ -52,7 +52,7 @@
 					<span class="description"><?php if ($project->genre) echo $project->genre; else echo "N/A"; ?></span>
 				</p>
 				<p>
-					<span class="header">Status in Country of Origin</span><br>
+					<span class="header">Status dans le pays d'origine</span><br>
 					<span class="description"><?php if ($project->status) echo $project->status; else echo "N/A"; ?></span>
 				</p>
 				<?php if ($project->team_origin) { ?>
@@ -65,11 +65,11 @@
 					if ($project->reader || $project->url) {
 				?>
 				<p>
-					<span class="header">Links</span><br>
+					<span class="header">Liens</span><br>
 					<span class="description">
 					<?php
 						if ($project->url) echo "<a href='{$project->url}' target='_blank'>Manga Updates</a><br>";
-						if ($project->reader) echo "<a href='{$project->reader}' target='_blank'>Online Reader</a>";
+						if ($project->reader) echo "<a href='{$project->reader}' target='_blank'>Lecture en Ligne</a>";
 					?>
 					</span>
 				</p>
@@ -112,7 +112,7 @@
 										echo '<span class="downloads">';
 											$downloads = get_sReleaseDownloads($release);
 											foreach ($downloads as $download => $value) {
-												$download = str_replace(array('download_depositfiles', 'download_fileserve', 'download_filesonic', 'download_mediafire', 'download_megaupload', 'download_pdf', 'download_irc'), array('DF', 'FSrv', 'FSnc', 'MF', 'Télécharger', 'PDF', 'IRC'), $download);
+												$download = str_replace(array('download_depositfiles', 'download_fileserve', 'download_filesonic', 'download_mediafire', 'download_megaupload', 'download_pdf', 'download_irc'), array('DF', 'FSrv', 'FSnc', 'MF', 'MEGA', 'PDF', 'IRC'), $download);
 												
 												if ($value) {
 													if ($download == 'IRC')
@@ -123,7 +123,7 @@
 											}
 											
 											$chapterUrl = get_sReaderLink($project, $release);
-											if ($chapterUrl) echo '&nbsp; <a href="' . $chapterUrl . '" target="_blank">LEL</a>';
+											if ($chapterUrl) echo '&nbsp; <a href="' . $chapterUrl . '" target="_blank">LeL</a>';
 										echo '</span>';
 										echo '<br>';
 									}
@@ -176,7 +176,7 @@
 								echo '<span class="downloads">';
 									$downloads = get_sReleaseDownloads($release);
 									foreach ($downloads as $download => $value) {
-										$download = str_replace(array('download_depositfiles', 'download_fileserve', 'download_filesonic', 'download_mediafire', 'download_megaupload', 'download_pdf', 'download_irc'), array('DF', 'FSrv', 'FSnc', 'MF', 'MU', 'PDF', 'IRC'), $download);
+										$download = str_replace(array('download_depositfiles', 'download_fileserve', 'download_filesonic', 'download_mediafire', 'download_megaupload', 'download_pdf', 'download_irc'), array('DF', 'FSrv', 'FSnc', 'MF', 'MEGA', 'PDF', 'IRC'), $download);
 										
 										if ($value) {
 											if ($download == 'IRC')
@@ -187,7 +187,7 @@
 									}
 									
 									$chapterUrl = get_sReaderLink($project, $release);
-									if ($chapterUrl) echo '&nbsp; <a href="' . $chapterUrl . '" target="_blank">LEL</a>';
+									if ($chapterUrl) echo '&nbsp; <a href="' . $chapterUrl . '" target="_blank">LeL</a>';
 								echo '</span>';
 								echo '<br class="clear">';
 							}
@@ -202,7 +202,7 @@
 	} else {
 ?>
 
-		<p><b>Error : 404 Page Not Found!</b><br><br>The page you attempted to access could not be found. It has either been moved, renamed, deleted, or never existed.</p>
+		<p><b>Erreur : 404 Page non trouvée!</b><br><br>Désolé, la page que vous demandez n'a pu être trouvée.</p>
 		<script type="text/javascript">
 			//window.location = "<?php $projectDirUrl = wpmanga_get('wpmanga_projectslist_url', 'projects'); echo get_bloginfo('siteurl') . '/' . $projectDirUrl . '/'; ?>";
 		</script>

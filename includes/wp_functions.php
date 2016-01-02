@@ -164,7 +164,7 @@ function comments_sProjects() {
 function footer_sProjects() {
 	$channel = wpmanga_get('wpmanga_channel', '#');
 	$content = '<div class="download-overlay" id="download-overlay">';
-	$content .= "TO DOWNLOAD, COPY AND PASTE THE FOLLOWING LINE INTO YOUR <a href='{$channel}' title='{$channel}'>IRC CLIENT</a>:<br><br><input class='xdcc' type='text' size='48'><br><br>(CLICK ANYWHERE OUTSIDE THIS BOX TO CLOSE THE OVERLAY)";
+	$content .= "POUR TELECHARGER, COPIEZ ET COLLEZ LA LIGNE SUIVANTE DANS VOTRE <a href='{$channel}' title='{$channel}'>CLIENT IRC</a>:<br><br><input class='xdcc' type='text' size='48'><br><br>(POUR FERMER CETTE BOITE, CLIQUEZ N/'IMPORTE OU EN DEHORS)";
 	$content .= '</div>';
 	echo $content;
 }
@@ -263,19 +263,19 @@ function get_sTruncate($string, $limit) {
 function get_sDuration($unixtime) {
 	$unixtime = time() - $unixtime;
 	$w = 0; $d = 0; $h = 0; $m = 0; $s = 0; $output = "";
-	if ($unixtime < 60) return "Just Recently...";
+	if ($unixtime < 60) return "A l'instant...";
 	while ($unixtime >= 604800) { $w++; $unixtime = $unixtime - 604800; }
 	while ($unixtime >= 86400) { $d++; $unixtime = $unixtime - 86400; }
 	while ($unixtime >= 3600) { $h++; $unixtime = $unixtime - 3600; }
 	while ($unixtime >= 60) { $m++; $unixtime = $unixtime - 60; }
 	while ($unixtime >= 0) { $s++; $unixtime = $unixtime - 1; }
-	if ($w == 1) { $output .= "1 week "; } else if ($w > 1) { $output .= "{$w} weeks "; }
-	if ($d == 1) { $output .= "1 day "; } else if ($d > 1) { $output .= "{$d} days "; }
-	if ($h == 1) { $output .= "1 hour ";	} else if ($h > 1) { $output .= "{$h} hours "; }
+	$output .= "Il y a ";
+	if ($w == 1) { $output .= "1 semaine "; } else if ($w > 1) { $output .= "{$w} semaines "; }
+	if ($d == 1) { $output .= "1 jour "; } else if ($d > 1) { $output .= "{$d} jours "; }
+	if ($h == 1) { $output .= "1 heure ";	} else if ($h > 1) { $output .= "{$h} heures "; }
 	if ($w == 0) {
 		if ($m == 1) { $output .= "1 minute "; } else if ($m > 1) { $output .= "{$m} minutes "; }
 	}
-	$output .= "ago";
 	return $output;
 }
 

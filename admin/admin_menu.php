@@ -18,21 +18,21 @@ function wpmanga_adminmenu () {
 	if ( current_user_can('edit_posts') || current_user_can('edit_pages') ) {
 
 		// Projects
-		add_menu_page('Projects', 'Projects', 'edit_posts', 'manga', 'wpmanga_listProjects');
-		add_submenu_page('manga', 'Add/Edit/Delete Project', '-- Add/Edit/Delete', 'edit_posts', 'manga/project', 'wpmanga_dataProject');
+		add_menu_page('Projets', 'Projets', 'edit_posts', 'manga', 'wpmanga_listProjects');
+		add_submenu_page('manga', 'Ajouter un projet', '-- Ajouter un projet', 'edit_posts', 'manga/project', 'wpmanga_dataProject');
 
 		// Volume Covers
-		add_submenu_page('manga', 'Volume Covers', 'Volume Covers', 'edit_posts', 'manga/list/volume', 'wpmanga_listCovers');
-		add_submenu_page('manga', 'Add/Edit/Delete Volume Cover', '-- Add/Edit/Delete', 'edit_posts', 'manga/volume', 'wpmanga_dataCover');
+		add_submenu_page('manga', 'Couvertures de Tome', 'Couvertures de Tome', 'edit_posts', 'manga/list/volume', 'wpmanga_listCovers');
+		add_submenu_page('manga', 'Ajout de couverture', '-- Ajout de couverture', 'edit_posts', 'manga/volume', 'wpmanga_dataCover');
 
 		// Releases
 		add_submenu_page('manga', 'Releases', 'Releases', 'edit_posts', 'manga/list/release', 'wpmanga_listReleases');
-		add_submenu_page('manga', 'Add/Edit/Delete Release', '-- Add/Edit/Delete', 'edit_posts', 'manga/release', 'wpmanga_dataRelease');
+		add_submenu_page('manga', 'Ajouter une release', '-- Ajouter une release', 'edit_posts', 'manga/release', 'wpmanga_dataRelease');
 
 		// Miscellaneous Pages
 		if (is_admin())
 			add_submenu_page('manga', 'WP Manga Settings', 'Settings', 'manage_options', 'manga/settings', 'wpmanga_settings');
-		add_submenu_page('manga', 'About', 'About', 'edit_posts', 'manga/about', 'wpmanga_about');
+		add_submenu_page('manga', 'A propos', 'A propos', 'edit_posts', 'manga/about', 'wpmanga_about');
 
 
 		// Load Required JavaScript and StyleSheet
@@ -72,14 +72,14 @@ function wpmanga_adminbar() {
 		$wp_admin_bar->add_menu(array(
 			'id' => 'wpmanga_project_list',
 			'parent' => 'wpmanga',
-			'title' => 'Projects',
+			'title' => 'Projets',
 			'href' => admin_url('admin.php?page=manga')
 		));
 
 		$wp_admin_bar->add_menu(array(
 			'id' => 'wpmanga_project',
 			'parent' => 'wpmanga',
-			'title' => 'Add New Project',
+			'title' => 'Ajouter un nouveau projet',
 			'href' => admin_url('admin.php?page=manga/project')
 		));
 
@@ -93,7 +93,7 @@ function wpmanga_adminbar() {
 		$wp_admin_bar->add_menu(array(
 			'id' => 'wpmanga_release',
 			'parent' => 'wpmanga',
-			'title' => 'Add New Release',
+			'title' => 'Ajouter une Release',
 			'href' => admin_url('admin.php?page=manga/release')
 		));
 	}
@@ -102,7 +102,7 @@ function wpmanga_adminbar() {
 		$wp_admin_bar->add_menu(array(
 			'id' => 'wpmanga_settings',
 			'parent' => 'wpmanga',
-			'title' => 'Settings',
+			'title' => 'Paramètres',
 			'href' => admin_url('admin.php?page=manga/settings')
 		));
 	}
@@ -118,7 +118,7 @@ function wpmanga_settings_link($links, $file) {
 	if (!$this_plugin) $this_plugin = plugin_basename(plugin_sDIR() . '/wpmanga.php');
 
 	if (is_admin() && $file == $this_plugin) {
-		$settings_link = '<a href="admin.php?page=manga/settings">Settings</a>';
+		$settings_link = '<a href="admin.php?page=manga/settings">Paramètres</a>';
 		array_unshift($links, $settings_link);
 	}
 	return $links;
@@ -130,7 +130,7 @@ function wpmanga_settings() {
 
 	if (isset($_POST['settings_nonce'])) {
 		if ( !wp_verify_nonce( $_POST['settings_nonce'], plugin_basename( plugin_sDIR() . '/wpmanga.php' ) ) ) {
-			echo '<div class="error"><p>Error: Security Verification Failed.</p></div>';
+			echo '<div class="error"><p>Erreur: Vérification de Sécurité échouée.</p></div>';
 		} else {
 			$_POST = array_map('trim', $_POST);
 
@@ -180,7 +180,7 @@ function wpmanga_settings() {
 				}
 			}
 
-			echo '<div class="updated"><p>Updated Settings.</p></div>';
+			echo '<div class="updated"><p>Paramètres mis à jour.</p></div>';
 		}
 	}
 
@@ -192,129 +192,129 @@ function wpmanga_settings() {
 				$thumbnail->request(plugin_sURL() . 'includes/generate_thumbnail.php?src=' . $project->image . '&w=' . wpmanga_get('wpmanga_thumbnail_list_width', 145) . '&h=' . wpmanga_get('wpmanga_thumbnail_list_height', 300));
 			}
 
-			echo '<div class="updated"><p>Finished Generating Thumbnails.</p></div>';
+			echo '<div class="updated"><p>Génération de miniatures terminée.</p></div>';
 		}
 	}
 ?>
 	<div class="wrap">
 		<?php screen_icon('options-general'); ?>
-		<h2>WP Manga Settings</h2>
+		<h2>Paramètres de WP Manga</h2>
 
-		<p>WP Manga Project Manager has several options which affect the plugin behavior in different areas. The Frontend Options influence the output and features available in the pages, posts, or text-widgets. The Backend Options control the plugin's administrative area.</p>
+		<p>WP Manga Project Manager possède plusieurs options affectant le comportement du plugin dans different endroits. Les options Frontend gèrent tout ce qui est visuel ainsi que les options disponibles dans les pages, posts, ou les widgets. Les options Backend contrôlent la zone admin du plugin.</p>
 
 		<div id="dashboard-widgets-wrap">
 			<div id="dashboard-widgets" class="metabox-holder">
 				<form method="post" action="admin.php?page=manga/settings">
 					<div class="postbox">
-						<h3 class='hndle'><span>Frontend Options</span></h3>
+						<h3 class='hndle'><span>Options Frontend</span></h3>
 						<div class="inside">
 							<table class="form-table fixed">
 								<tr class="form-field">
-									<td width="250px"><label for="wpmanga_thumbnail_list_width">Thumbnail Dimensions</label></td>
+									<td width="250px"><label for="wpmanga_thumbnail_list_width">Dimensions de miniature</label></td>
 									<td>
-										Width <input name="wpmanga_thumbnail_list_width" id="wpmanga_thumbnail_list_width" type="number" value="<?php echo wpmanga_get('wpmanga_thumbnail_list_width', 145); ?>" style="width: 10%;"> &nbsp;
-										Height <input name="wpmanga_thumbnail_list_height" id="wpmanga_thumbnail_list_height" type="number" value="<?php echo wpmanga_get('wpmanga_thumbnail_list_height', 300); ?>" style="width: 10%;"> &nbsp; <a class="button-secondary" href="admin.php?page=manga/settings&generate=thumbnails">Force Generate Thumbnails</a>
+										Largeur <input name="wpmanga_thumbnail_list_width" id="wpmanga_thumbnail_list_width" type="number" value="<?php echo wpmanga_get('wpmanga_thumbnail_list_width', 145); ?>" style="width: 10%;"> &nbsp;
+										Hauteur <input name="wpmanga_thumbnail_list_height" id="wpmanga_thumbnail_list_height" type="number" value="<?php echo wpmanga_get('wpmanga_thumbnail_list_height', 300); ?>" style="width: 10%;"> &nbsp; <a class="button-secondary" href="admin.php?page=manga/settings&generate=thumbnails">Forcer la génération de mniiatures</a>
 									</td>
 								</tr>
 
 								<tr class="form">
-									<td valign="top" width="250px"><label>Individual Project Page</label></td>
+									<td valign="top" width="250px"><label>Page des projets individuels</label></td>
 									<td>
-										<input type="checkbox" name="wpmanga_page_details_title" id="wpmanga_page_details_title" value="1" <?php if (wpmanga_get('wpmanga_page_details_title', 0)) echo 'checked="checked"' ?> style="width: 20px;"> <label for="wpmanga_page_details_title">Disable Title Filter <span class="description">(For Specific Themes)</span></label> <br>
-										<input type="checkbox" name="wpmanga_page_details_header" id="wpmanga_page_details_header" value="1" <?php if (wpmanga_get('wpmanga_page_details_header', 0)) echo 'checked="checked"' ?> style="width: 20px;"> <label for="wpmanga_page_details_header">Display Header <span class="description">(For Specific Themes)</span></label>
+										<input type="checkbox" name="wpmanga_page_details_title" id="wpmanga_page_details_title" value="1" <?php if (wpmanga_get('wpmanga_page_details_title', 0)) echo 'checked="checked"' ?> style="width: 20px;"> <label for="wpmanga_page_details_title">Désactiver le filtre titre <span class="description">(Pour des thèmes spécifiques)</span></label> <br>
+										<input type="checkbox" name="wpmanga_page_details_header" id="wpmanga_page_details_header" value="1" <?php if (wpmanga_get('wpmanga_page_details_header', 0)) echo 'checked="checked"' ?> style="width: 20px;"> <label for="wpmanga_page_details_header">Afficher en-tête <span class="description">(Pour des thèmes spécifiques)</span></label>
 									</td>
 								</tr>
 
 								<tr class="form">
-									<td valign="top" width="250px"><label>Online Reader Link Generator</label></td>
+									<td valign="top" width="250px"><label>Générateur de lien LeL</label></td>
 									<td>
 										<input name="wpmanga_reader" id="reader_foolreader" type="radio" value="1"<?php if (wpmanga_get('wpmanga_reader', 1) == 1) echo ' checked="checked"'; ?>> <label for="reader_foolreader">FoOlSlide</label> &nbsp;
-										<input name="wpmanga_reader" id="reader_none" type="radio" value="0"<?php if (!wpmanga_get('wpmanga_reader', 1) == 0) echo ' checked="checked"'; ?>> <label for="reader_none">None</label>
+										<input name="wpmanga_reader" id="reader_none" type="radio" value="0"<?php if (!wpmanga_get('wpmanga_reader', 1) == 0) echo ' checked="checked"'; ?>> <label for="reader_none">Aucun</label>
 									</td>
 								</tr>
 
 								<tr class="form">
-									<td valign="top" width="250px"><label for="wpmanga_releasebar_style">Release Bar Display Style</label></td>
+									<td valign="top" width="250px"><label for="wpmanga_releasebar_style">Style d'affichage de la barre des releases</label></td>
 									<td>
 										<select name="wpmanga_releasebar_style" id="wpmanga_releasebar_style" style="width: 100%">
-											<option value="1"<?php if (wpmanga_get('wpmanga_releasebar_style', 1) == '1') echo ' selected="selected"'; ?>>Default Release Bar</option>
-											<option value="2"<?php if (wpmanga_get('wpmanga_releasebar_style', 1) == '2') echo ' selected="selected"'; ?>>Plain Release Bar</option>
+											<option value="1"<?php if (wpmanga_get('wpmanga_releasebar_style', 1) == '1') echo ' selected="selected"'; ?>>Barre de release par défaut</option>
+											<option value="2"<?php if (wpmanga_get('wpmanga_releasebar_style', 1) == '2') echo ' selected="selected"'; ?>>Barre de release basique</option>
 										</select>
 									</td>
 								</tr>
 
 								<tr class="form">
-									<td width="250px"><label for="wpmanga_widget_icons">Latest Widget List</label></td>
+									<td width="250px"><label for="wpmanga_widget_icons">Widget</label></td>
 									<td>
-										<input type="checkbox" name="wpmanga_widget_icons" id="wpmanga_widget_icons" value="1" <?php if (wpmanga_get('wpmanga_widget_icons', 0)) echo 'checked="checked"' ?> style="width: 20px;"> <label for="wpmanga_widget_icons">Show Release Icons</label>
+										<input type="checkbox" name="wpmanga_widget_icons" id="wpmanga_widget_icons" value="1" <?php if (wpmanga_get('wpmanga_widget_icons', 0)) echo 'checked="checked"' ?> style="width: 20px;"> <label for="wpmanga_widget_icons">Afficher les icones des releases</label>
 									</td>
 								</tr>
 
 								<tr class="form">
-									<td width="250px"><label for="wpmanga_channel">IRC Channel</label></td>
+									<td width="250px"><label for="wpmanga_channel">Channel IRC</label></td>
 									<td>
 										<input name="wpmanga_channel" id="wpmanga_channel" type="text" placeholder="irc://irc.irchighway.net/beta" value="<?php echo wpmanga_get('wpmanga_channel', ''); ?>" style="width: 100%;">
 									</td>
 								</tr>
 
 								<tr class="form">
-									<td width="250px"><label for="wpmanga_projectslist_url">Projects List Url</label></td>
+									<td width="250px"><label for="wpmanga_projectslist_url">URL de la liste des projets/label></td>
 									<td>
-										<input name="wpmanga_projectslist_url" id="wpmanga_projectslist_url" type="text" value="<?php echo wpmanga_get('wpmanga_projectslist_url', 'projects'); ?>" style="width: 100%;">
+										<input name="wpmanga_projectslist_url" id="wpmanga_projectslist_url" type="text" value="<?php echo wpmanga_get('wpmanga_projectslist_url', 'projets'); ?>" style="width: 100%;">
 									</td>
 								</tr>
 
 								<tr class="form">
-									<td width="250px"><label for="wpmanga_projectslist_title">Projects List Title</label></td>
+									<td width="250px"><label for="wpmanga_projectslist_title">Titre de la liste des projets</label></td>
 									<td>
-										<input name="wpmanga_projectslist_title" id="wpmanga_projectslist_title" type="text" value="<?php echo wpmanga_get('wpmanga_projectslist_title', 'Projects'); ?>" style="width: 100%;">
+										<input name="wpmanga_projectslist_title" id="wpmanga_projectslist_title" type="text" value="<?php echo wpmanga_get('wpmanga_projectslist_title', 'Projets'); ?>" style="width: 100%;">
 									</td>
 								</tr>
 
 								<tr class="form-field">
-									<td valign="top" style="padding-top: 10px;" width="250px"><label for="wpmanga_delay">Delay Download Link</label></td>
+									<td valign="top" style="padding-top: 10px;" width="250px"><label for="wpmanga_delay">Lien de téléchargement retardé</label></td>
 									<td>
-										<input name="wpmanga_delay" id="wpmanga_delay" type="number" value="<?php echo wpmanga_get('wpmanga_delay', 0); ?>" style="width: 10%;"> Hours <br>
+										<input name="wpmanga_delay" id="wpmanga_delay" type="number" value="<?php echo wpmanga_get('wpmanga_delay', 0); ?>" style="width: 10%;"> Heures <br>
 										<input type="checkbox" name="wpmanga_delay_depositfiles" id="wpmanga_delay_depositfiles" value="1" <?php if (wpmanga_get('wpmanga_delay_depositfiles', 0)) echo 'checked="checked"' ?> style="width: 20px;"> <label for="wpmanga_delay_depositfiles">Deposit Files</label> <br>
 										<input type="checkbox" name="wpmanga_delay_fileserve" id="wpmanga_delay_fileserve" value="1" <?php if (wpmanga_get('wpmanga_delay_fileserve', 0)) echo 'checked="checked"' ?> style="width: 20px;"> <label for="wpmanga_delay_fileserve">FileServe</label> <br>
 										<input type="checkbox" name="wpmanga_delay_filesonic" id="wpmanga_delay_filesonic" value="1" <?php if (wpmanga_get('wpmanga_delay_filesonic', 0)) echo 'checked="checked"' ?> style="width: 20px;"> <label for="wpmanga_delay_filesonic">FileSonic</label> <br>
 										<input type="checkbox" name="wpmanga_delay_mediafire" id="wpmanga_delay_mediafire" value="1" <?php if (wpmanga_get('wpmanga_delay_mediafire', 0)) echo 'checked="checked"' ?> style="width: 20px;"> <label for="wpmanga_delay_mediafire">MediaFire</label> <br>
-										<input type="checkbox" name="wpmanga_delay_megaupload" id="wpmanga_delay_megaupload" value="1" <?php if (wpmanga_get('wpmanga_delay_megaupload', 0)) echo 'checked="checked"' ?> style="width: 20px;"> <label for="wpmanga_delay_megaupload">MEGAUPLOAD</label> <br>
+										<input type="checkbox" name="wpmanga_delay_megaupload" id="wpmanga_delay_megaupload" value="1" <?php if (wpmanga_get('wpmanga_delay_megaupload', 0)) echo 'checked="checked"' ?> style="width: 20px;"> <label for="wpmanga_delay_megaupload">MEGA</label> <br>
 										<input type="checkbox" name="wpmanga_delay_pdf" id="wpmanga_delay_pdf" value="1" <?php if (wpmanga_get('wpmanga_delay_pdf', 0)) echo 'checked="checked"' ?> style="width: 20px;"> <label for="wpmanga_delay_pdf">PDF</label>
 									</td>
 								</tr>
 							</table>
 
-							&nbsp; <input type="submit" class="button-primary" name="save" value="Save Settings"><br><br>
+							&nbsp; <input type="submit" class="button-primary" name="save" value="Enregistrer les paramètres"><br><br>
 							<input type="hidden" name="settings_nonce" value="<?php echo wp_create_nonce( plugin_basename( plugin_sDIR() . '/wpmanga.php' ) ); ?>">
 						</div>
 					</div>
 
 					<div class="postbox" >
-						<h3 class='hndle'><span>Backend Options</span></h3>
+						<h3 class='hndle'><span>Options Backend</span></h3>
 						<div class="inside">
 							<table class="form-table fixed">
 								<tr class="form-field">
-									<td valign="top" style="padding-top: 10px;" width="250px"><label>Disable Download Links</label></td>
+									<td valign="top" style="padding-top: 10px;" width="250px"><label>Désactiver les services de téléchargement</label></td>
 									<td>
 										<input type="checkbox" name="wpmanga_disable_depositfiles" id="wpmanga_disable_depositfiles" value="1" <?php if (wpmanga_get('wpmanga_disable_depositfiles', 0)) echo 'checked="checked"' ?> style="width: 20px;"> <label for="wpmanga_disable_depositfiles">Deposit Files</label> <br>
 										<input type="checkbox" name="wpmanga_disable_fileserve" id="wpmanga_disable_fileserve" value="1" <?php if (wpmanga_get('wpmanga_disable_fileserve', 0)) echo 'checked="checked"' ?> style="width: 20px;"> <label for="wpmanga_disable_fileserve">FileServe</label> <br>
 										<input type="checkbox" name="wpmanga_disable_filesonic" id="wpmanga_disable_filesonic" value="1" <?php if (wpmanga_get('wpmanga_disable_filesonic', 0)) echo 'checked="checked"' ?> style="width: 20px;"> <label for="wpmanga_disable_filesonic">FileSonic</label> <br>
 										<input type="checkbox" name="wpmanga_disable_mediafire" id="wpmanga_disable_mediafire" value="1" <?php if (wpmanga_get('wpmanga_disable_mediafire', 0)) echo 'checked="checked"' ?> style="width: 20px;"> <label for="wpmanga_disable_mediafire">MediaFire</label> <br>
-										<input type="checkbox" name="wpmanga_disable_megaupload" id="wpmanga_disable_megaupload" value="1" <?php if (wpmanga_get('wpmanga_disable_megaupload', 0)) echo 'checked="checked"' ?> style="width: 20px;"> <label for="wpmanga_disable_megaupload">MEGAUPLOAD</label> <br>
+										<input type="checkbox" name="wpmanga_disable_megaupload" id="wpmanga_disable_megaupload" value="1" <?php if (wpmanga_get('wpmanga_disable_megaupload', 0)) echo 'checked="checked"' ?> style="width: 20px;"> <label for="wpmanga_disable_megaupload">MEGA</label> <br>
 										<input type="checkbox" name="wpmanga_disable_pdf" id="wpmanga_disable_pdf" value="1" <?php if (wpmanga_get('wpmanga_disable_pdf', 0)) echo 'checked="checked"' ?> style="width: 20px;"> <label for="wpmanga_disable_pdf">PDF</label>
 									</td>
 								</tr>
 
 								<tr class="form">
-									<td width="250px"><label for="wpmanga_release_statuspublished">Release publication status (0 for auto publish)</label></td>
+									<td width="250px"><label for="wpmanga_release_statuspublished">Status de publication de releases (0 pour publication auto)</label></td>
 									<td>
 										<input name="wpmanga_release_statuspublished" id="wpmanga_release_statuspublished" type="text" value="<?php echo wpmanga_get('wpmanga_release_statuspublished', ''); ?>" style="width: 100%;">
 									</td>
 								</tr>
 							</table>
 
-							&nbsp; <input type="submit" class="button-primary" name="save" value="Save Settings"><br><br>
+							&nbsp; <input type="submit" class="button-primary" name="save" value="Enregistrer les paramètres"><br><br>
 							<input type="hidden" name="settings_nonce" value="<?php echo wp_create_nonce( plugin_basename( plugin_sDIR() . '/wpmanga.php' ) ); ?>">
 						</div>
 					</div>
@@ -331,15 +331,15 @@ function wpmanga_about() {
 ?>
 	<div class="wrap">
 		<?php screen_icon('users'); ?>
-		<h2><?php echo esc_html( 'About' ); ?></h2>
+		<h2><?php echo esc_html( 'A propos' ); ?></h2>
 
 		<br />
 		<div id="dashboard-widgets-wrap">
 			<div id="dashboard-widgets" class="metabox-holder">
 				<div class="postbox" >
-					<h3 class='hndle'><span>What is the purpose of this plugin?</span></h3>
+					<h3 class='hndle'><span>A quoi sert ce plugin?</span></h3>
 					<div class="inside">
-						<p>WP Manga Project Manager allows you to manage your projects and releases to ensure that all information and links are accurate and working throughout the entire WordPress. This will enable your users to avoid any confusion and conflicting information by delivering all the information from one single database.</p>
+						<p>WP Manga Project Manager vous permet de gérer vos projets et releases afin de s'assurer que toute les information et liens sont bons et fonctionnels a travers tout WordPress. Cela permet a vos utilisateurs d'éviter toute confusion et conflit d'information en délivrant toute les informations dans une seule base de donnée.</p>
 					</div>
 				</div>
 

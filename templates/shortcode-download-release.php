@@ -37,7 +37,7 @@
 				
 				$output .= '<div id="release-download-wrapper">';
 				
-				$output .= "<span><a class='release-download-button' href='#release-{$release->id}' title='{$project->title} - " . get_sFormatRelease($project, $release) . "'> Download</a></span>";
+				$output .= "<span><a class='release-download-button' href='#release-{$release->id}' title='{$project->title} - " . get_sFormatRelease($project, $release) . "'> Télécharger</a></span>";
 				
 				$output .= '<ul class="release-download-icons">';
 				
@@ -54,7 +54,7 @@
 					}
 				
 				$chapterUrl = get_sReaderLink($project, $release);
-				if ($chapterUrl) $output .= '<li><a href="' . $chapterUrl . '" target="_blank"><img src="' . plugin_sURL() . 'images/download-icon-onlinereader-32.png" title="Read ' . $project->name . ' Online"></a></li>';
+				if ($chapterUrl) $output .= '<li><a href="' . $chapterUrl . '" target="_blank"><img src="' . plugin_sURL() . 'images/download-icon-onlinereader-32.png" title="Lire ' . $project->name . ' en ligne"></a></li>';
 				
 				$output .= '</ul>';
 				
@@ -67,7 +67,7 @@
 		// Display Error!
 		$output .= "<del>{$project->title} - " . get_sFormatRelease($project, $release);
 		if ($release->title != NULL) $output .= ": {$release->title}";
-		$output .= '</del> (Please wait, the downloads for this release have not been added yet.)';
+		$output .= '</del> (Veuillez patienter, les téléchargements de cette release n\'ont pas encore été rajoutés.)';
 		$output .= '<br><br class="wpmanga-clear">';
 	}
 ?>

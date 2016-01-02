@@ -291,8 +291,8 @@ function get_sLastRelease($id, $onlypublished = FALSE) {
  * @return object
  */
 function get_sFormatRelease($project, $release, $v = true, $c = true, $r = true) {
-	$custom_chp = get_sJSON($project->custom, 'chapter');
-	$custom_sub = get_sJSON($project->custom, 'subchapter');
+	$custom_chp = get_sJSON($project->custom, 'chapitre');
+	$custom_sub = get_sJSON($project->custom, 'sous-chapitre');
 
 	$output = '';
 
@@ -319,7 +319,7 @@ function get_sFormatRelease($project, $release, $v = true, $c = true, $r = true)
 				if ($custom_chp)
 					$output .= str_replace('%num%', str_pad($release->chapter, 2, '0', STR_PAD_LEFT), $custom_chp);
 				else
-					$output .= 'Chapter ' . str_pad($release->chapter, 2, '0', STR_PAD_LEFT);
+					$output .= 'Chapitre ' . str_pad($release->chapter, 2, '0', STR_PAD_LEFT);
 
 				if ($release->subchapter > 0) {
 					if ($custom_sub)

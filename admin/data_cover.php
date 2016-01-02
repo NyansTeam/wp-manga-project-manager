@@ -68,9 +68,9 @@ function wpmanga_dataCover() {
 ?>
 		<div class="wrap">
 			<?php screen_icon('edit'); ?>
-			<h2><?php echo ucfirst($action); ?> Volume Cover</h2>
+			<h2><?php echo ucfirst($action); ?> Couverture de volume</h2>
 			
-			<p>Add a new cover for a volume.</p>
+			<p>Ajouter une nouvelle couverture a un volume.</p>
 <?php
 			switch ($action) {
 				case 'edit':
@@ -87,7 +87,7 @@ function wpmanga_dataCover() {
 ?>
 				<table class="form-table">
 					<tr class="form-field">
-						<th scope="row"><label for="project_id">Project</label></th>
+						<th scope="row"><label for="project_id">Projet</label></th>
 						<td>
 							<select name="project_id" id="project_id" style="width: 460px">
 								<?php
@@ -112,8 +112,8 @@ function wpmanga_dataCover() {
 					</tr>
 					
 					<tr class="form">
-						<th scope="row"><label for="image">Image <span class="description">(required)</span></label></th>
-						<td><input id="image" type="url" name="image" class="upload" size="66" placeholder="Enter an URL or upload an image cover for this volume." value="<?php if (isset($cover)) echo $cover->image; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?> required><input class="<?php if ($action != 'delete') echo 'upload_image_button'; ?>" type="button" value="Upload Image"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>></td>
+						<th scope="row"><label for="image">Image <span class="description">(requis)</span></label></th>
+						<td><input id="image" type="url" name="image" class="upload" size="66" placeholder="Entrez une URL ou uploadez une couverture pour ce volume." value="<?php if (isset($cover)) echo $cover->image; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?> required><input class="<?php if ($action != 'delete') echo 'upload_image_button'; ?>" type="button" value="Upload Image"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>></td>
 					</tr>
 				</table>
 				

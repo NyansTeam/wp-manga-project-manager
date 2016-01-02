@@ -91,9 +91,9 @@ class Latest_Releases_Widget extends WP_Widget {
  */
 class Chapters_Progress_Widget extends WP_Widget {
 	function Chapters_Progress_Widget() {
-		$widget_ops = array('classname' => 'chapters-progress', 'description' => 'Display chapters progress.');
+		$widget_ops = array('classname' => 'chapters-progress', 'description' => 'Affiche l\'avancement des chapitres.');
 		$control_ops = array('width' => 220, 'height' => 350, 'id_base' => 'chapters-progress');
-		$this->WP_Widget('chapters-progress', 'Chapters Progress', $widget_ops, $control_ops);
+		$this->WP_Widget('chapters-progress', 'Avancement des chapitres', $widget_ops, $control_ops);
 	}
 
 	function widget($args, $instance) {
@@ -128,7 +128,7 @@ class Chapters_Progress_Widget extends WP_Widget {
 			<select name="<?php echo $this->get_field_name('projectCategory'); ?>" id="<?php echo $this->get_field_id('projectCategory'); ?>" >
 				<?php
 					$categories = get_sListCategories();
-					echo "<option value=''>None</option>";
+					echo "<option value=''>Aucune</option>";
 					foreach ($categories as $category) {
 						if ($projectCategory == $category->id)
 							echo "<option value='{$category->id}' selected='selected'>{$category->name}</option>";

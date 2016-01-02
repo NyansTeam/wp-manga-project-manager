@@ -125,7 +125,7 @@ function wpmanga_dataProject() {
 ?>
 			<table class="form-table">
 				<tr class="form-field">
-					<th scope="row"><label for="category">Category</label></th>
+					<th scope="row"><label for="category">Categorie</label></th>
 					<td>
 						<select name="category" id="category" style="width: 460px">
 							<?php
@@ -146,12 +146,12 @@ function wpmanga_dataProject() {
 				</tr>
 				
 				<tr class="form-field">
-					<th scope="row"><label for="title">Title <span class="description">(required)</span></label></th>
+					<th scope="row"><label for="title">Titre <span class="description">(requis)</span></label></th>
 					<td><input name="title" id="title" type="text" value="<?php if (isset($project)) echo $project->title; ?>"<?php if ($action == 'delete') echo ' readonly="readonly" '; ?>autofocus required></td>
 				</tr>
 				
 				<tr class="form-field">
-					<th scope="row"><label for="title_alt">Alternative Title</label></th>
+					<th scope="row"><label for="title_alt">Titre Alternatif</label></th>
 					<td><input name="title_alt" id="title_alt" type="text" value="<?php if (isset($project)) echo $project->title_alt; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>></td>
 				</tr>
 
@@ -161,7 +161,7 @@ function wpmanga_dataProject() {
 				</tr>
 
 				<tr class="form-field">
-					<th scope="row"><label for="author">Author & Artist</label></th>
+					<th scope="row"><label for="author">Auteur & Artiste</label></th>
 					<td><input name="author" id="author" type="text" value="<?php if (isset($project)) echo esc_textarea($project->author); ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>></td>
 				</tr>
 				
@@ -171,7 +171,7 @@ function wpmanga_dataProject() {
 				</tr>
 				
 				<tr class="form-field">
-					<th scope="row"><label for="short_description">Short Description <span class="description">(optional)</span></label></th>
+					<th scope="row"><label for="short_description">Description courte <span class="description">(optionnel)</span></label></th>
 					<td><textarea name="description_short" id="description_short"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>><?php if (isset($project)) echo esc_textarea($project->description_short); ?></textarea></td>
 				</tr>
 
@@ -181,48 +181,48 @@ function wpmanga_dataProject() {
 				</tr>
 				
 				<tr class="form-field">
-					<th scope="row"><label for="status">Status in Country of Origin</label></th>
+					<th scope="row"><label for="status">Status dans le pays d'origine</label></th>
 					<td><textarea name="status" id="status"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>><?php if (isset($project)) echo esc_textarea($project->status); ?></textarea></td>
 				</tr>
 				
 				<tr class="form">
 					<th scope="row"><label for="image">Image</label></th>
-					<td><input id="image" type="url" name="image" class="upload" size="66" placeholder="Enter an URL or upload an image for this project." value="<?php if (isset($project)) echo $project->image; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>><input class="<?php if ($action != 'delete') echo 'upload_image_button'; ?>" type="button" value="Upload Image"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>></td>
+					<td><input id="image" type="url" name="image" class="upload" size="66" placeholder="Entrer une URL ou uploadez une image pour ce projet." value="<?php if (isset($project)) echo $project->image; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>><input class="<?php if ($action != 'delete') echo 'upload_image_button'; ?>" type="button" value="Upload Image"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>></td>
 				</tr>
 
 				<tr class="form">
-					<th scope="row"><label for="image_thumbnail">Image Thumbnail <span class="description">(optional)</span></label></th>
+					<th scope="row"><label for="image_thumbnail">Miniature <span class="description">(optionnel)</span></label></th>
 					<td><input id="image_thumbnail" type="url" name="image_thumbnail" class="upload" size="66" placeholder="Enter an URL or upload an image thumbnail for this project." value="<?php if (isset($project)) echo $project->image_thumbnail; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>><input class="<?php if ($action != 'delete') echo 'upload_image_button'; ?>" type="button" value="Upload Image Thumbnail"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>></td>
 				</tr>
 
 				<tr class="form-field">
-					<th scope="row"><label for="team_origin">Original Team</label></th>
+					<th scope="row"><label for="team_origin">Team anglaise</label></th>
 					<td><input name="team_origin" id="team_origin" type="text" value="<?php if (isset($project)) echo esc_textarea($project->team_origin); ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>></td>
 				</tr>
 
 				<tr class="form-field">
-					<th scope="row"><label for="reader">Online Reader Link</label></th>
+					<th scope="row"><label for="reader">Lien LeL</label></th>
 					<td><input name="reader" id="reader" type="url" placeholder="http://reader.<?php echo $_SERVER['HTTP_HOST']; ?>/serie/..." value="<?php if (isset($project)) echo $project->reader; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>></td>
 				</tr>
 				
 				<tr class="form-field">
-					<th scope="row"><label for="url">Reference Link</label></th>
+					<th scope="row"><label for="url">Lien de réference</label></th>
 					<td><input name="url" id="url" type="url" placeholder="http://mangaupdates.com/series.html?id=..." value="<?php if (isset($project)) echo $project->url; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>></td>
 				</tr>
 				
 				<tr class="form">
-					<th scope="row"><label for="custom_subchapter">Mature Content</label></th>
+					<th scope="row"><label for="custom_subchapter">Contenu adulte</label></th>
 					<td><input name="mature" id="mature" type="checkbox" value="1"<?php if ($project->mature) echo ' checked="checked"'; ?>> Yes</td>
 				</tr>
 				
 				<tr class="form-field">
-					<th scope="row"><label for="custom_chapter">Custom Chapter <span class="description">(optional)</span></label></th>
+					<th scope="row"><label for="custom_chapter">Chapitrage personnalisé <span class="description">(optionnel)</span></label></th>
 					<td><input name="custom_chapter" id="custom_chapter" type="text" placeholder="Episode %num%" value="<?php if (isset($project)) echo get_sJSON($project->custom, 'chapter'); ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>></td>
 				</tr>
 				
 				<tr class="form-field">
-					<th scope="row"><label for="custom_subchapter">Custom Sub-Chapter <span class="description">(optional)</span></label></th>
-					<td><input name="custom_subchapter" id="custom_subchapter" type="text" placeholder="Act %num%" value="<?php if (isset($project)) echo get_sJSON($project->custom, 'subchapter'); ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>></td>
+					<th scope="row"><label for="custom_subchapter">Sous-Chaptitrage personnalisé <span class="description">(optional)</span></label></th>
+					<td><input name="custom_subchapter" id="custom_subchapter" type="text" placeholder="Bonus %num%" value="<?php if (isset($project)) echo get_sJSON($project->custom, 'subchapter'); ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>></td>
 				</tr>
 			</table>
 			
