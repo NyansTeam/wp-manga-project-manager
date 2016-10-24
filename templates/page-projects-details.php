@@ -68,7 +68,7 @@
 					<span class="header">Liens</span><br>
 					<span class="description">
 					<?php
-						if ($project->url) echo "<a href='{$project->url}' target='_blank'>Manga Updates</a><br>";
+						if ($project->url) echo "<a href='{$project->url}' target='_blank'>Lien de référence</a><br>";
 						if ($project->reader) echo "<a href='{$project->reader}' target='_blank'>Lecture en Ligne</a>";
 					?>
 					</span>
