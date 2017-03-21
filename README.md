@@ -1,7 +1,7 @@
 ## WP Manga Project Manager
 
 [![LICENSE](https://img.shields.io/badge/license-GPLv2-blue.svg)](LICENCE.md)
-#![MAXVERSION](https://img.shields.io/badge/wordpress-4.3.9-orange.svg)](#contributions)
+[![MAXVERSION](https://img.shields.io/badge/wordpress-4.3.9-orange.svg)](#contributions)
 
 
 ### Description
