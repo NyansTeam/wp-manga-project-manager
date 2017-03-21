@@ -226,7 +226,7 @@ function wpmanga_dataRelease() {
 						<th scope="row"><label for="download_irc">Commande de téléchargement IRC</label></th>
 						<td>
 							<input name="download_irc" id="download_irc" type="text" placeholder="/MSG LEBOT XDCC SEND #1  ou  !TRIGGER1" style="width:91%;" value="<?php if (isset($release)) echo $release->download_irc; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>>
-							<label for="download_irc"><img src="<?php echo plugin_sURL(); ?>images/download-icon-irc.png" width="24px" style="vertical-align: middle; padding-bottom: 2px"></label>
+							<label for="download_irc"><img src="<?php echo plugin_sURL(); ?>images/download-icon-irc-24.png" width="24px" style="vertical-align: middle; padding-bottom: 2px"></label>
 						</td>
 					</tr>
 
