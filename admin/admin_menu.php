@@ -31,7 +31,7 @@ function wpmanga_adminmenu () {
 
 		// Miscellaneous Pages
 		if (is_admin())
-			add_submenu_page('manga', 'WP Manga Settings', 'Settings', 'manage_options', 'manga/settings', 'wpmanga_settings');
+			add_submenu_page('manga', 'Paramètres de WP Manga', 'Paramètres', 'manage_options', 'manga/settings', 'wpmanga_settings');
 		add_submenu_page('manga', 'A propos', 'A propos', 'edit_posts', 'manga/about', 'wpmanga_about');
 
 
@@ -213,7 +213,7 @@ function wpmanga_settings() {
 									<td width="250px"><label for="wpmanga_thumbnail_list_width">Dimensions de miniature</label></td>
 									<td>
 										Largeur <input name="wpmanga_thumbnail_list_width" id="wpmanga_thumbnail_list_width" type="number" value="<?php echo wpmanga_get('wpmanga_thumbnail_list_width', 145); ?>" style="width: 10%;"> &nbsp;
-										Hauteur <input name="wpmanga_thumbnail_list_height" id="wpmanga_thumbnail_list_height" type="number" value="<?php echo wpmanga_get('wpmanga_thumbnail_list_height', 300); ?>" style="width: 10%;"> &nbsp; <a class="button-secondary" href="admin.php?page=manga/settings&generate=thumbnails">Forcer la génération de mniiatures</a>
+										Hauteur <input name="wpmanga_thumbnail_list_height" id="wpmanga_thumbnail_list_height" type="number" value="<?php echo wpmanga_get('wpmanga_thumbnail_list_height', 300); ?>" style="width: 10%;"> &nbsp; <a class="button-secondary" href="admin.php?page=manga/settings&generate=thumbnails">Forcer la génération de miniatures</a>
 									</td>
 								</tr>
 
@@ -253,7 +253,7 @@ function wpmanga_settings() {
 								<tr class="form">
 									<td width="250px"><label for="wpmanga_channel">Channel IRC</label></td>
 									<td>
-										<input name="wpmanga_channel" id="wpmanga_channel" type="text" placeholder="irc://irc.irchighway.net/beta" value="<?php echo wpmanga_get('wpmanga_channel', ''); ?>" style="width: 100%;">
+										<input name="wpmanga_channel" id="wpmanga_channel" type="text" placeholder="irc://irc.worldnet.net/team" value="<?php echo wpmanga_get('wpmanga_channel', ''); ?>" style="width: 100%;">
 									</td>
 								</tr>
 
@@ -280,7 +280,7 @@ function wpmanga_settings() {
 										<input type="checkbox" name="wpmanga_delay_filesonic" id="wpmanga_delay_filesonic" value="1" <?php if (wpmanga_get('wpmanga_delay_filesonic', 0)) echo 'checked="checked"' ?> style="width: 20px;"> <label for="wpmanga_delay_filesonic">FileSonic</label> <br>
 										<input type="checkbox" name="wpmanga_delay_mediafire" id="wpmanga_delay_mediafire" value="1" <?php if (wpmanga_get('wpmanga_delay_mediafire', 0)) echo 'checked="checked"' ?> style="width: 20px;"> <label for="wpmanga_delay_mediafire">MediaFire</label> <br>
 										<input type="checkbox" name="wpmanga_delay_megaupload" id="wpmanga_delay_megaupload" value="1" <?php if (wpmanga_get('wpmanga_delay_megaupload', 0)) echo 'checked="checked"' ?> style="width: 20px;"> <label for="wpmanga_delay_megaupload">MEGA</label> <br>
-										<input type="checkbox" name="wpmanga_delay_pdf" id="wpmanga_delay_pdf" value="1" <?php if (wpmanga_get('wpmanga_delay_pdf', 0)) echo 'checked="checked"' ?> style="width: 20px;"> <label for="wpmanga_delay_pdf">PDF</label>
+										<input type="checkbox" name="wpmanga_delay_pdf" id="wpmanga_delay_pdf" value="1" <?php if (wpmanga_get('wpmanga_delay_pdf', 0)) echo 'checked="checked"' ?> style="width: 20px;"> <label for="wpmanga_delay_pdf">LeL</label>
 									</td>
 								</tr>
 							</table>
@@ -302,7 +302,7 @@ function wpmanga_settings() {
 										<input type="checkbox" name="wpmanga_disable_filesonic" id="wpmanga_disable_filesonic" value="1" <?php if (wpmanga_get('wpmanga_disable_filesonic', 0)) echo 'checked="checked"' ?> style="width: 20px;"> <label for="wpmanga_disable_filesonic">FileSonic</label> <br>
 										<input type="checkbox" name="wpmanga_disable_mediafire" id="wpmanga_disable_mediafire" value="1" <?php if (wpmanga_get('wpmanga_disable_mediafire', 0)) echo 'checked="checked"' ?> style="width: 20px;"> <label for="wpmanga_disable_mediafire">MediaFire</label> <br>
 										<input type="checkbox" name="wpmanga_disable_megaupload" id="wpmanga_disable_megaupload" value="1" <?php if (wpmanga_get('wpmanga_disable_megaupload', 0)) echo 'checked="checked"' ?> style="width: 20px;"> <label for="wpmanga_disable_megaupload">MEGA</label> <br>
-										<input type="checkbox" name="wpmanga_disable_pdf" id="wpmanga_disable_pdf" value="1" <?php if (wpmanga_get('wpmanga_disable_pdf', 0)) echo 'checked="checked"' ?> style="width: 20px;"> <label for="wpmanga_disable_pdf">PDF</label>
+										<input type="checkbox" name="wpmanga_disable_pdf" id="wpmanga_disable_pdf" value="1" <?php if (wpmanga_get('wpmanga_disable_pdf', 0)) echo 'checked="checked"' ?> style="width: 20px;"> <label for="wpmanga_disable_pdf">LeL</label>
 									</td>
 								</tr>
 
@@ -339,44 +339,43 @@ function wpmanga_about() {
 				<div class="postbox" >
 					<h3 class='hndle'><span>A quoi sert ce plugin?</span></h3>
 					<div class="inside">
-						<p>WP Manga Project Manager vous permet de gérer vos projets et releases afin de s'assurer que toute les information et liens sont bons et fonctionnels a travers tout WordPress. Cela permet a vos utilisateurs d'éviter toute confusion et conflit d'information en délivrant toute les informations dans une seule base de donnée.</p>
+						<p>WP Manga Project Manager vous permet de gérer vos projets et releases afin de s'assurer que toute les information et liens sont bons et fonctionnels a travers tout WordPress. Cela permet à vos utilisateurs d'éviter toute confusion et conflit d'information en délivrant toute les informations dans une seule base de donnée.</p>
 					</div>
 				</div>
 
 				<div class="postbox" >
-					<h3 class='hndle'><span>Usage</span></h3>
+					<h3 class='hndle'><span>Utilisation</span></h3>
 					<div class="inside">
-						<p>We are currently drafting a documentation regarding how to use this plugin. It was meant to be used by scanlation groups to keep information about their releases updated.</p>
+						<p>Comme personne ne veux s'en occuper, il n'y a actuellement aucune documentation sur comment utiliser ce plugin. À la base, ce il a été fait pour être utilisé par les équipes de scantrad afin de garder les infos de leurs releases à jour.</p>
 					</div>
 				</div>
 
 				<div class="postbox" >
-					<h3 class='hndle'><span>Help and Support</span></h3>
+					<h3 class='hndle'><span>Aide et Support</span></h3>
 					<div class="inside">
-						<p>Support is provided through IRC. Please contact me (prinny) on the IRCHighway network in #beta.</p>
+						<p>Aucun support n'est disponible. Si vous trouvez des bugs, vous pouvez les signaler via <a href="https://github.com/Albirew/wp-manga-project-manager/issues">la page du projet sur GitHub</a>.</p>
 					</div>
 				</div>
 
 				<div class="postbox" >
-					<h3 class='hndle'><span>Author and License</span></h3>
+					<h3 class='hndle'><span>Auteur et License</span></h3>
 					<div class="inside">
-						<p>This plugin was written by prinny. It is licensed as Free Software under GPL v2.<br />
-						If you like this plugin, please send a donation. This will allow me to further develop the plugin and to provide countless hours of support in the future. Any amount is appreciated!</p>
+						<p>Ce plugin a été créé par prinny et est soumis à la licence GPL v2.<br />
+						Si vous aimez ce plugin, n'hésitez pas à aider dans son développement. Cela permettra de rendre ce plugin incontournable.</p>
 					</div>
 				</div>
 
 				<div class="postbox" >
-					<h3 class='hndle'><span>Credits and Thanks</span></h3>
+					<h3 class='hndle'><span>Crédits et Remerciements</span></h3>
 					<div class="inside">
-						<p>
-							Many thanks for those groups and users that help with the testing of this plugin and providing suggestions to improve it as well.<br /><br />
-							Scanlation Groups:<br />
+						<p>Merci beaucoup à ces groupes et utilisateurs qui ont aidé à tester ce plugin et ont aussi fourni des suggestions afin de l'améliorer.<br /><br />
+							Groupes de scantrad:<br />
 							- Sense Scans<br />
 							- Kirei Cake<br />
 							- Extras<br />
 							- FTH Scans
 							<br /><br />
-							Members/Users:<br />
+							Membres/Utilisateurs:<br />
 							- busaway<br />
 							- Empathy<br />
 							- Lollipop<br />
@@ -386,14 +385,14 @@ function wpmanga_about() {
 				</div>
 				<?php if (current_user_can('manage_options')) { ?>
 				<div class="postbox" >
-					<h3 class='hndle'><span>Debug and Version Information</span></h3>
+					<h3 class='hndle'><span>Debug et Information de Version</span></h3>
 					<div class="inside">
-						<p>The following will provide you with information regarding software versions. <b>This information must be provided in bug reports.</b><br /><br />
-						- Manga Projects (Plugin): <?php echo get_sVersion('plugin'); ?><br />
-						- Manga Projects (Database): <?php echo get_sVersion('db'); ?><br />
+						<p>Les lignes suivantes contiennent les informations concernant les versions des programmes. <b>Ces informations doivent être ajoutées dans vos rapports de bug.</b><br /><br />
+						- WPManga (Plugin): <?php echo get_sVersion('plugin'); ?><br />
+						- WPManga (Database): <?php echo get_sVersion('db'); ?><br />
 						- WordPress: <?php echo get_bloginfo('version'); ?><br />
 						- PHP: <?php echo phpversion(); ?><br />
-						- MySQL Server: <?php echo mysql_get_server_info(); ?>
+						- Serveur MySQL: <?php echo mysql_get_server_info(); ?>
 						</p>
 					</div>
 				</div>

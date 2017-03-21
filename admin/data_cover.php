@@ -19,7 +19,7 @@ function wpmanga_dataCover() {
 	
 	if ( isset( $_POST['wpmanga_nonce'] ) ) {
 		if ( !wp_verify_nonce( $_POST['wpmanga_nonce'], plugin_basename( plugin_sDIR() . '/wpmanga.php' ) ) ) {
-			echo '<div class="error"><p>Error: Security Verification Failed.</p></div>';
+			echo '<div class="error"><p>Erreur: Échec de la vérification de sécurité.</p></div>';
 		} else {
 			$_POST = array_map('trim', $_POST);
 			$_POST = array_map('stripslashes', $_POST);
@@ -32,30 +32,30 @@ function wpmanga_dataCover() {
 						$status = $wpdb->update($wpdb->prefix . 'projects_volumes', $data, array('id' => $_GET['id']));
 						
 						if ($status)
-							echo '<div class="updated"><p>Updated Volume Cover Information.</p></div>';
+							echo '<div class="updated"><p>Informations de couverture de tome mises à jour.</p></div>';
 						else
-							echo '<div class="error"><p>Error: Failed to update information.</p></div>';
+							echo '<div class="error"><p>Erreur: Échec de la mise à jour.</p></div>';
 						break;
 						
 					case 'delete':
 						$status = $wpdb->query($wpdb->prepare("DELETE FROM `{$wpdb->prefix}projects_volumes` WHERE `id` = '%d'", $_GET['id']));
 						
 						if ($status)
-							echo '<div class="updated"><p>Deleted Volume Cover Information.</p></div>';
+							echo '<div class="updated"><p>Informations de couverture de tome effacées.</p></div>';
 						else
-							echo '<div class="error"><p>Error: Failed to delete information.</p></div>';
+							echo '<div class="error"><p>Erreur: Échec de la suppression d\'information.</p></div>';
 						break;
 				
 					default:
 						$wpdb->insert($wpdb->prefix . 'projects_volumes', $data);
 						
 						if ( $wpdb->insert_id )
-							echo '<div class="updated"><p>Added Volume Cover for Releases. <a href="admin.php?page=manga/volume&action=edit&id=' . $wpdb->insert_id . '">Edit Cover Information</a></p></div>';
+							echo '<div class="updated"><p>Ajouté couverture de tome pour les releases. <a href="admin.php?page=manga/volume&action=edit&id=' . $wpdb->insert_id . '">Modifier les infos de couverture</a></p></div>';
 						else
-							echo '<div class="error"><p>Error: Failed to add new cover.</p></div>';
+							echo '<div class="error"><p>Erreur: Échec d\'ajout de nouvelle couverture.</p></div>';
 				}
 			} else {
-				echo '<div class="error"><p>Error: Please fill in the required fields.</p></div>';
+				echo '<div class="error"><p>Erreur: Veuillez remplir les champs requis.</p></div>';
 			}
 		}
 	}
@@ -118,7 +118,7 @@ function wpmanga_dataCover() {
 				</table>
 				
 				<p class="submit">
-					<input type="submit" class="button-primary" name="save" value="<?php echo ucfirst($action); ?> Volume Cover" />
+					<input type="submit" class="button-primary" name="save" value="<?php echo ucfirst($action); ?> couverture de volume" />
 					<input type="hidden" name="wpmanga_nonce" value="<?php echo wp_create_nonce( plugin_basename( plugin_sDIR() . '/wpmanga.php' ) ); ?>" />
 				</p>
 			</form>

@@ -22,7 +22,7 @@
 					echo '</span></p></li>';
 			}
 		} else {
-			echo '<li>No Releases</li>';
+			echo '<li>Pas de Release</li>';
 		}
 	?>
 </ul>

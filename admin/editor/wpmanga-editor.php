@@ -19,10 +19,10 @@
 	});
 </script>
 <div class="wrap">
-	<h2>List of Releases</h2>
+	<h2>Liste des Releases</h2>
 	<div id="poststuff">
 		<div style="clear: both;"><p>
-			This is a list of all releases available in our database. You may insert a release into a post or page here. Click the "Insert" link after the desired release and the corresponding shortcode will be inserted into the editor (<strong>[release id=&lt;ID&gt;]</strong>).
+			Ceci est une liste de toutes les releases disponibles dans notre base de données. Vous pouvez insérer une release dans un article ou une page ici. Cliquez sur le lien "Insérer" après la release désirée et le shortcode correspondant sera inséré dans l'éditeur (<strong>[release id=&lt;ID&gt;]</strong>).
 		</p></div>
 		<div style="clear: both;">
 		<table id="releases_editor" class="widefat tablesorter">
@@ -49,7 +49,7 @@
 				<tr>
 					<th scope="row"><?php echo $release->id; ?></th>
 					<td style="vertical-align: inherit;"><?php echo $project->title . ' - ' . get_sFormatRelease($project, $release); ?></td>
-					<td style="vertical-align: inherit;"><a class="send_release_to_editor" title="<?php echo $release->id; ?>" href="#" style="color: rgb(33, 117, 155);">Insert</a></td>
+					<td style="vertical-align: inherit;"><a class="send_release_to_editor" title="<?php echo $release->id; ?>" href="#" style="color: rgb(33, 117, 155);">Insérer</a></td>
 				</tr>
 				<?php
 					}

@@ -13,7 +13,7 @@ function wpmanga_listCovers() {
 ?>
 		<div class="wrap">
 			<?php screen_icon('edit-pages'); ?>
-			<h2>Volume Covers <a href="?page=manga/volume" class="add-new-h2">Add a New Volume Cover</a></h2>
+			<h2>Couvertures de Tome <a href="?page=manga/volume" class="add-new-h2">Ajouyter une nouvelle couverture</a></h2>
 			
 <?php
 			foreach ($projects as $project) {
@@ -24,7 +24,7 @@ function wpmanga_listCovers() {
 					<br> &nbsp; <a href="admin.php?page=manga/project&action=edit&id=<?php echo $project->id; ?>" style="text-decoration: none; font-weight: bold"><?php echo $project->title; ?></a> &nbsp; <?php if ($project->title_alt) echo "&#12302;{$project->title_alt}&#12303;"; ?>
 					<table class="wp-list-table widefat fixed">
 						<thead>
-							<th scope="col">Covers</th>
+							<th scope="col">Couvertures</th>
 							<th scope="col" width="150px">Action</th>
 						</thead>
 						
@@ -34,9 +34,9 @@ function wpmanga_listCovers() {
 							<tr<?php if ($row % 2) echo ' class="alternate"'; $row++ ?>>
 								<td>Volume <?php echo $cover->volume; ?></td>
 								<td>
-									<a href="admin.php?page=manga/volume&action=edit&id=<?php echo $cover->id; ?>" title="Edit Volume Cover Information">Edit</a> | 
-									<a href="admin.php?page=manga/volume&action=delete&id=<?php echo $cover->id; ?>" title="Delete Volume Cover Information">Delete</a> | 
-									<a href="<?php echo get_sPermalink($cover->project_id); ?>" title="View Project Page">View</a>
+									<a href="admin.php?page=manga/volume&action=edit&id=<?php echo $cover->id; ?>" title="Éditer la couverture du volume">Éditer</a> | 
+									<a href="admin.php?page=manga/volume&action=delete&id=<?php echo $cover->id; ?>" title="Effacer la couverture du volume">Effacer</a> | 
+									<a href="<?php echo get_sPermalink($cover->project_id); ?>" title="Afficher la page du Projet">Afficher</a>
 								</td>
 							</tr>
 							<?php } ?>

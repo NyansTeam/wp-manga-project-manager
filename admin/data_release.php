@@ -1,7 +1,5 @@
 <?php
 
-
-
 /**
  * Display Administrative Menu for Releases.
  * @return menu
@@ -21,7 +19,7 @@ function wpmanga_dataRelease() {
 
 	if ( isset( $_POST['wpmanga_nonce'] ) ) {
 		if ( !wp_verify_nonce( $_POST['wpmanga_nonce'], plugin_basename( plugin_sDIR() . '/wpmanga.php' ) ) ) {
-			echo '<div class="error"><p>Error: Security Verification Failed.</p></div>';
+			echo '<div class="error"><p>Erreur: Échec de la vérification de sécurité.</p></div>';
 		} else {
 			$_POST = array_map('trim', $_POST);
 			$_POST = array_map('stripslashes', $_POST);
@@ -54,30 +52,30 @@ function wpmanga_dataRelease() {
 						$status = $wpdb->update($wpdb->prefix . 'projects_releases', $data, array('id' => $_GET['id']));
 
 						if ($status)
-							echo '<div class="updated"><p>Updated Release Information.</p></div>';
+							echo '<div class="updated"><p>Information de release mise à jour.</p></div>';
 						else
-							echo '<div class="error"><p>Error: Failed to update information.</p></div>';
+							echo '<div class="error"><p>Erreur: Échec de mise à jour d\'information.</p></div>';
 						break;
 
 					case 'delete':
 						$status = $wpdb->query($wpdb->prepare("DELETE FROM `{$wpdb->prefix}projects_releases` WHERE `id` = '%d'", $_GET['id']));
 
 						if ($status)
-							echo '<div class="updated"><p>Deleted Release Information.</p></div>';
+							echo '<div class="updated"><p>Information de release effacée.</p></div>';
 						else
-							echo '<div class="error"><p>Error: Failed to delete information.</p></div>';
+							echo '<div class="error"><p>Erreur: Échec de suppression d\'information.</p></div>';
 						break;
 
 					default:
 						$wpdb->insert($wpdb->prefix . 'projects_releases', $data);
 
 						if ( $wpdb->insert_id )
-							echo '<div class="updated"><p>Added Release for Projects. <a href="admin.php?page=manga/release&action=edit&id=' . $wpdb->insert_id . '">Edit Release</a></p></div>';
+							echo '<div class="updated"><p>Release ajoutée pour le Project. <a href="admin.php?page=manga/release&action=edit&id=' . $wpdb->insert_id . '">Éditer la Release</a></p></div>';
 						else
-							echo '<div class="error"><p>Error: Failed to add new release.</p></div>';
+							echo '<div class="error"><p>Erreur: Échec d\'ajout de nouvelle release.</p></div>';
 				}
 			} else {
-				echo '<div class="error"><p>Error: Please fill in the required fields.</p></div>';
+				echo '<div class="error"><p>Erreur: Veuillez remplir les champs requis.</p></div>';
 			}
 		}
 	}
@@ -92,7 +90,7 @@ function wpmanga_dataRelease() {
 			<?php screen_icon('edit'); ?>
 			<h2><?php echo ucfirst($action); ?> Release</h2>
 
-			<p>Add a new release for a project.</p>
+			<p>Ajouter une nouvelle release pour un projet.</p>
 <?php
 			switch ($action) {
 				case 'edit':
@@ -109,7 +107,7 @@ function wpmanga_dataRelease() {
 ?>
 				<table class="form-table">
 					<tr class="form-field">
-						<th scope="row"><label for="project_id">Project</label></th>
+						<th scope="row"><label for="project_id">Projet</label></th>
 						<td>
 							<select name="project_id" id="project_id" style="width: 460px">
 								<?php
@@ -134,18 +132,18 @@ function wpmanga_dataRelease() {
 					</tr>
 
 					<tr class="form-field">
-						<th scope="row"><label for="chapter">Chapter</label></th>
+						<th scope="row"><label for="chapter">Chapitre</label></th>
 						<td><input name="chapter" id="chapter" type="number" value="<?php if (isset($release)) echo $release->chapter; else echo '0'; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>></td>
 					</tr>
 
 					<tr class="form-field">
-						<th scope="row"><label for="subchapter">Sub-Chapter</label></th>
+						<th scope="row"><label for="subchapter">Sous-Chapitre</label></th>
 						<td><input name="subchapter" id="subchapter" type="number" value="<?php if (isset($release)) echo $release->subchapter; else echo '0'; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>></td>
 					</tr>
 
 					<?php if (preg_match("/(edit|delete)/i", $action)) { ?>
 					<tr class="form-field">
-						<th scope="row"><label for="revision">Revision</label></th>
+						<th scope="row"><label for="revision">Révision</label></th>
 						<td><input name="revision" id="revision" type="number" value="<?php if (isset($release)) echo $release->revision; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>></td>
 					</tr>
 					<?php } else { ?>
@@ -185,16 +183,16 @@ function wpmanga_dataRelease() {
 							<input name="download_megaupload" id="download_megaupload" type="<?php if (wpmanga_get('wpmanga_disable_megaupload', 0)) echo 'hidden'; else 'url'; ?>" placeholder="Entrez le lien MEGA ici." style="width:90%;" value="<?php if (isset($release)) echo $release->download_megaupload; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>>
 							<label for="download_megaupload"><?php if (!wpmanga_get('wpmanga_disable_megaupload', 0)) echo '<img src="' . plugin_sURL(). 'images/download-icon-megaupload-24.png" width="24px" style="vertical-align: middle; padding-bottom: 2px"><br>'; ?></label>
 
-							<input name="download_pdf" id="download_pdf" type="<?php if (wpmanga_get('wpmanga_disable_pdf', 0)) echo 'hidden'; else 'url'; ?>" placeholder="Entrez le lien pour le fichier PDF ici." style="width:90%;" value="<?php if (isset($release)) echo $release->download_pdf; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>>
+							<input name="download_pdf" id="download_pdf" type="<?php if (wpmanga_get('wpmanga_disable_pdf', 0)) echo 'hidden'; else 'url'; ?>" placeholder="Entrez le lien pour la LeL ici." style="width:90%;" value="<?php if (isset($release)) echo $release->download_pdf; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>>
 							<label for="download_pdf"><?php if (!wpmanga_get('wpmanga_disable_pdf', 0)) echo '<img src="' . plugin_sURL(). 'images/download-icon-pdf-24.png" width="24px" style="vertical-align: middle; padding-bottom: 2px"><br>'; ?></label>
 						</td>
 					</tr>
 
 					<?php if (!wpmanga_get('wpmanga_reader',1) == 1) { ?>
 					<tr class="form-field">
-						<th scope="row"><label for="link_reader">Chapter Links</label></th>
+						<th scope="row"><label for="link_reader">Lien du Chapitre</label></th>
 						<td>
-							<input name="link_reader" id="link_reader" type="url" placeholder="Enter chapter link here." style="width:90%;" value="<?php if (isset($release)) echo $release->link_reader; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>>
+							<input name="link_reader" id="link_reader" type="url" placeholder="Entrez le lien vers le chapitre ici." style="width:90%;" value="<?php if (isset($release)) echo $release->link_reader; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>>
 							<label for="link_reader"><img src=" <?php echo plugin_sURL(); ?>images/download-icon-onlinereader-24.png" width="24px" style="vertical-align: middle; padding-bottom: 2px"><br></label>
 						</td>
 					</tr>
@@ -227,7 +225,7 @@ function wpmanga_dataRelease() {
 					<tr class="form-field">
 						<th scope="row"><label for="download_irc">Commande de téléchargement IRC</label></th>
 						<td>
-							<input name="download_irc" id="download_irc" type="text" placeholder="/MSG BOTNAME XDCC SEND #1  ou  !TRIGGER1" style="width:91%;" value="<?php if (isset($release)) echo $release->download_irc; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>>
+							<input name="download_irc" id="download_irc" type="text" placeholder="/MSG LEBOT XDCC SEND #1  ou  !TRIGGER1" style="width:91%;" value="<?php if (isset($release)) echo $release->download_irc; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>>
 							<label for="download_irc"><img src="<?php echo plugin_sURL(); ?>images/download-icon-irc.png" width="24px" style="vertical-align: middle; padding-bottom: 2px"></label>
 						</td>
 					</tr>

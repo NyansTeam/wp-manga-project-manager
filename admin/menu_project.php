@@ -17,7 +17,7 @@ function wpmanga_listProjects() {
 ?>
 		<div class="wrap">
 			<?php screen_icon('edit-pages'); ?>
-			<h2>Manga Projects <a href="?page=manga/project" class="add-new-h2">Add a New Project</a></h2>
+			<h2>Projets Manga <a href="?page=manga/project" class="add-new-h2">Nouveau Projet</a></h2>
 			
 			<ul class="subsubsub">
 				<li class="all">
@@ -39,12 +39,12 @@ function wpmanga_listProjects() {
 			<table class="wp-list-table widefat">
 				<thead>
 					<th scope="col" width="65px"></th>
-					<th scope="col">Title</th>
+					<th scope="col">Titre</th>
 				</thead>
 				
 				<tfoot>
 					<th scope="col" width="65px"></th>
-					<th scope="col">Title</th>
+					<th scope="col">Titre</th>
 				</tfoot>
 				
 				<tbody id="the-list">
@@ -57,20 +57,20 @@ function wpmanga_listProjects() {
 						
 						<td>
 							<strong>
-								<a href="admin.php?page=manga/project&action=edit&id=<?php echo $project->id; ?>" title="Edit &#8220;<?php echo $project->title; ?>&#8220;"><?php echo $project->title; ?></a>
-							</strong> <?php if ($project->author) echo 'by ' . $project->author; ?><br>
+								<a href="admin.php?page=manga/project&action=edit&id=<?php echo $project->id; ?>" title="Éditer &#8220;<?php echo $project->title; ?>&#8220;"><?php echo $project->title; ?></a>
+							</strong> <?php if ($project->author) echo 'par ' . $project->author; ?><br>
 							Status: <?php echo get_sTitleCategory($project->category); ?>; Genre(s): <?php if ($project->genre) echo $project->genre; else echo "N/A";?>
 							<div class="row-actions">
 								<span class="edit">
-									<a href="admin.php?page=manga/project&action=edit&id=<?php echo $project->id; ?>" title="Edit this Project">Edit</a>
+									<a href="admin.php?page=manga/project&action=edit&id=<?php echo $project->id; ?>" title="Éditer ce Projet">Éditer</a>
 								</span>
 								 | 
 								<span class="trash">
-									<a href="admin.php?page=manga/project&action=delete&id=<?php echo $project->id; ?>" title="Delete this Project">Delete</a>
+									<a href="admin.php?page=manga/project&action=delete&id=<?php echo $project->id; ?>" title="Effacer ce Projet">Effacer</a>
 								</span>
 								 | 
 								<span class="view">
-									<a href="<?php echo get_sPermalink($project); ?>" title="View &#8220;<?php echo $project->title; ?>&#8221; Project Page">View</a>
+									<a href="<?php echo get_sPermalink($project); ?>" title="Afficher &#8220;<?php echo $project->title; ?>&#8221; Page du Projet">Afficher</a>
 								</span>
 							</div>
 						</td>						

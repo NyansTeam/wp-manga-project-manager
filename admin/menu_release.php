@@ -14,7 +14,7 @@ function wpmanga_listReleases() {
 ?>
 		<div class="wrap">
 			<?php screen_icon('edit-pages'); ?>
-			<h2>Releases <a href="?page=manga/release" class="add-new-h2">Add a New Release</a></h2>
+			<h2>Releases <a href="?page=manga/release" class="add-new-h2">Ajouter une Release</a></h2>
 			
 
 		<script type="text/javascript">
@@ -62,22 +62,22 @@ function wpmanga_listReleases() {
 <?php if ($publishedstatus != 0)
 	  {
 ?>
-		<label><input type="checkbox" onclick="toggleFinishedRelease(this);">Show finished releases</label><br />
+		<label><input type="checkbox" onclick="toggleFinishedRelease(this);">Afficher les releases terminées</label><br />
 <?php } ?>
-		<span>Show only projects from this category </span>
+		<span>Afficher seulement les projets de la catégorie </span>
 		<select name="category" id="categoryCombo" onchange="catFilter(this)" >
 				<?php
 					$categories = get_sListCategories();
-					echo "<option value='' selected=\"selected\">All</option>";
+					echo "<option value='' selected=\"selected\">Tout</option>";
 					foreach ($categories as $category) {
 						echo "<option value='{$category->id}'>{$category->name}</option>";
 					}
 				?>
 		</select>
-		<span> Or only this project</span>
+		<span> Ou seulement le projet</span>
 		<select name="projects" id="projectsCombo" onchange="projectFilter(this)" >
 				<?php
-					echo "<option value='' selected=\"selected\">All</option>";
+					echo "<option value='' selected=\"selected\">Tout</option>";
 					foreach ($projects as $project) {
 						echo "<option value='{$project->id}'>{$project->title}</option>";
 					}
@@ -111,9 +111,9 @@ function wpmanga_listReleases() {
 								<td><?php echo date('Y.m.d', $release->unixtime); ?></td>
 								<td><?php echo get_sFormatRelease($project, $release); if ($release->title) echo ' - <i>' . $release->title . '</i>'; ?></td>
 								<td>
-									<a href="admin.php?page=manga/release&action=edit&id=<?php echo $release->id; ?>" title="Edit Release Information">Edit</a> | 
-									<a href="admin.php?page=manga/release&action=delete&id=<?php echo $release->id; ?>" title="Delete Release Information">Delete</a> | 
-									<a href="<?php echo get_sPermalink($release->project_id); ?>#release-<?php echo $release->id; ?>" title="View Release Information">View</a>
+									<a href="admin.php?page=manga/release&action=edit&id=<?php echo $release->id; ?>" title="Éditer la Release">Éditer</a> | 
+									<a href="admin.php?page=manga/release&action=delete&id=<?php echo $release->id; ?>" title="Effacer la Release">Effacer</a> | 
+									<a href="<?php echo get_sPermalink($release->project_id); ?>#release-<?php echo $release->id; ?>" title="Afficher la Release">Afficher</a>
 								</td>
 							</tr>
 							<?php } ?>

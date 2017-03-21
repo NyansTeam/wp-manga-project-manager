@@ -6,7 +6,7 @@
  */
 add_action('wp_dashboard_setup', 'add_sDashboard');
 function add_sDashboard() {
-	wp_add_dashboard_widget('Latest_Release_WidgetD', 'Latest Releases', 'dashboard_sLatestWidgetD');
+	wp_add_dashboard_widget('Latest_Release_WidgetD', 'Dernières Releases', 'dashboard_sLatestWidgetD');
 }
 
 /**
@@ -26,7 +26,7 @@ function dashboard_sLatestWidgetD() {
 			<h4 class="comment-meta">
 				<?php echo $project->title; ?> - <i><?php echo get_sFormatRelease($project, $release); ?></i>
 			</h4>
-			<blockquote><p>Released: <?php if ($release->revision > 1) echo get_sDuration($release->unixtime_mod); else echo get_sDuration($release->unixtime); ?></p></blockquote>
+			<blockquote><p>Sorti: <?php if ($release->revision > 1) echo get_sDuration($release->unixtime_mod); else echo get_sDuration($release->unixtime); ?></p></blockquote>
 			<p class="row-actions">
 				<a href="admin.php?page=manga/release&action=edit&id=<?php echo $release->id; ?>" title="Edit this Release">Edit</a> | <a href="<?php echo get_sPermalink($project->id); ?>#release-<?php echo $release->id; ?>" title="<?php echo $release->title; ?>">View</a>
 			</p>

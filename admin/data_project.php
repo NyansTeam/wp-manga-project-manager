@@ -34,7 +34,7 @@ function wpmanga_dataProject() {
 
 	if (isset($_POST['wpmanga_nonce'])) {
 		if (!wp_verify_nonce( $_POST['wpmanga_nonce'], plugin_basename(plugin_sDIR() . '/wpmanga.php'))) {
-			echo '<div class="error"><p>Error: Security Verification Failed.</p></div>';
+			echo '<div class="error"><p>Erreur: Échec de la vérification de sécurité.</p></div>';
 		} else {
 			$_POST = array_map('trim', $_POST);
 			$_POST = array_map('stripslashes', $_POST);
@@ -63,12 +63,12 @@ function wpmanga_dataProject() {
 							$status = $wpdb->update($wpdb->prefix . 'projects', $data, array('id' => $_GET['id']));
 						
 							if ($status)
-								echo '<div class="updated"><p>Updated Project Information for <i>' . $_POST['title'] . '</i>.</p></div>';
+								echo '<div class="updated"><p>Information de projet mis à jour pour <i>' . $_POST['title'] . '</i>.</p></div>';
 							else
-								echo '<div class="error"><p>Error: Failed to update information.</p></div>';
+								echo '<div class="error"><p>Erreur: Échec de la mise à jour des informations.</p></div>';
 						}
 						else {
-							echo '<div class="error"><p>Error: Failed to edit project. (Duplicate Url)</p></div>';
+							echo '<div class="error"><p>Erreur: Échec de la modification du project. (URL Dupliquée)</p></div>';
 						}
 						break;
 						
@@ -77,9 +77,9 @@ function wpmanga_dataProject() {
 						$wpdb->query($wpdb->prepare("DELETE FROM `{$wpdb->prefix}projects_releases` WHERE `project_id` = '%d'", $_GET['id']));
 						
 						if ($status)
-							echo '<div class="updated"><p>Deleted Project Information for <i>' . $_POST['title'] . '</i>.</p></div>';
+							echo '<div class="updated"><p>Information de projet effacée pour <i>' . $_POST['title'] . '</i>.</p></div>';
 						else
-							echo '<div class="error"><p>Error: Failed to delete information.</p></div>';
+							echo '<div class="error"><p>Erreur: Échec de suppression d\'information.</p></div>';
 						break;
 						
 					default:
@@ -88,15 +88,15 @@ function wpmanga_dataProject() {
 							$wpdb->insert($wpdb->prefix . 'projects', $data);
 					
 							if ($wpdb->insert_id)
-								echo '<div class="updated"><p>Added <i>' . $_POST['title'] . '</i> to Projects. <a href="admin.php?page=manga/project&action=edit&id=' . $wpdb->insert_id . '">Edit Information</a></p></div>';
+								echo '<div class="updated"><p>Ajouté <i>' . $_POST['title'] . '</i> aux Projets. <a href="admin.php?page=manga/project&action=edit&id=' . $wpdb->insert_id . '">Éditer les Informations</a></p></div>';
 							else
-								echo '<div class="error"><p>Error: Failed to add new project.</p></div>';
+								echo '<div class="error"><p>Erreur: Échec de l\'ajout du nouveau project.</p></div>';
 						} else {
-							echo '<div class="error"><p>Error: Failed to add new project. (Duplicate Url)</p></div>';
+							echo '<div class="error"><p>Erreur: Échec de l\'ajout du nouveau project. (URL Dupliquée)</p></div>';
 						}
 				}
 			} else {
-				echo '<div class="error"><p>Error: Please fill in the required fields.</p></div>';
+				echo '<div class="error"><p>Erreur: Veuillez remplir les champs requis.</p></div>';
 			}
 		}
 	}
@@ -106,9 +106,9 @@ function wpmanga_dataProject() {
 ?>
 	<div class="wrap">
 		<?php screen_icon('edit'); ?>
-		<h2><?php echo ucfirst($action); ?> Project Information</h2>
+		<h2><?php echo ucfirst($action); ?> Information de projet</h2>
 		
-		<p>Create a new project and add it to this site.</p>
+		<p>Créer un nouveau projet et le rajouter sur le site.</p>
 <?php
 		switch ($action) {
 			case 'edit':
@@ -125,7 +125,7 @@ function wpmanga_dataProject() {
 ?>
 			<table class="form-table">
 				<tr class="form-field">
-					<th scope="row"><label for="category">Categorie</label></th>
+					<th scope="row"><label for="category">Catégorie</label></th>
 					<td>
 						<select name="category" id="category" style="width: 460px">
 							<?php
@@ -156,7 +156,7 @@ function wpmanga_dataProject() {
 				</tr>
 
 				<tr class="form-field">
-					<th scope="row"><label for="title_alt">Url Fragment <br /><span class="description">(optional, blank for auto-generated url)</span></label></th>
+					<th scope="row"><label for="title_alt">Fragment d'URL <br /><span class="description">(optionnel, laisser vide pour une URL auto-générée)</span></label></th>
 					<td><input name="slug" id="slug" type="text" value="<?php if (isset($project)) echo $project->slug; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>></td>
 				</tr>
 
@@ -171,7 +171,7 @@ function wpmanga_dataProject() {
 				</tr>
 				
 				<tr class="form-field">
-					<th scope="row"><label for="short_description">Description courte <span class="description">(optionnel)</span></label></th>
+					<th scope="row"><label for="short_description">Description courte <span class="description">(optionnelle)</span></label></th>
 					<td><textarea name="description_short" id="description_short"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>><?php if (isset($project)) echo esc_textarea($project->description_short); ?></textarea></td>
 				</tr>
 
@@ -187,12 +187,12 @@ function wpmanga_dataProject() {
 				
 				<tr class="form">
 					<th scope="row"><label for="image">Image</label></th>
-					<td><input id="image" type="url" name="image" class="upload" size="66" placeholder="Entrer une URL ou uploadez une image pour ce projet." value="<?php if (isset($project)) echo $project->image; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>><input class="<?php if ($action != 'delete') echo 'upload_image_button'; ?>" type="button" value="Upload Image"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>></td>
+					<td><input id="image" type="url" name="image" class="upload" size="66" placeholder="Entrer une URL ou uploadez une image pour ce projet." value="<?php if (isset($project)) echo $project->image; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>><input class="<?php if ($action != 'delete') echo 'upload_image_button'; ?>" type="button" value="Envoyer Image"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>></td>
 				</tr>
 
 				<tr class="form">
 					<th scope="row"><label for="image_thumbnail">Miniature <span class="description">(optionnel)</span></label></th>
-					<td><input id="image_thumbnail" type="url" name="image_thumbnail" class="upload" size="66" placeholder="Enter an URL or upload an image thumbnail for this project." value="<?php if (isset($project)) echo $project->image_thumbnail; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>><input class="<?php if ($action != 'delete') echo 'upload_image_button'; ?>" type="button" value="Upload Image Thumbnail"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>></td>
+					<td><input id="image_thumbnail" type="url" name="image_thumbnail" class="upload" size="66" placeholder="Enter an URL or upload an image thumbnail for this project." value="<?php if (isset($project)) echo $project->image_thumbnail; ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>><input class="<?php if ($action != 'delete') echo 'upload_image_button'; ?>" type="button" value="Envoyer Miniature"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>></td>
 				</tr>
 
 				<tr class="form-field">
@@ -217,17 +217,17 @@ function wpmanga_dataProject() {
 				
 				<tr class="form-field">
 					<th scope="row"><label for="custom_chapter">Chapitrage personnalisé <span class="description">(optionnel)</span></label></th>
-					<td><input name="custom_chapter" id="custom_chapter" type="text" placeholder="Episode %num%" value="<?php if (isset($project)) echo get_sJSON($project->custom, 'chapter'); ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>></td>
+					<td><input name="custom_chapter" id="custom_chapter" type="text" placeholder="Épisode %num%" value="<?php if (isset($project)) echo get_sJSON($project->custom, 'chapter'); ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>></td>
 				</tr>
 				
 				<tr class="form-field">
-					<th scope="row"><label for="custom_subchapter">Sous-Chaptitrage personnalisé <span class="description">(optional)</span></label></th>
+					<th scope="row"><label for="custom_subchapter">Sous-Chapitrage personnalisé <span class="description">(optionnel)</span></label></th>
 					<td><input name="custom_subchapter" id="custom_subchapter" type="text" placeholder="Bonus %num%" value="<?php if (isset($project)) echo get_sJSON($project->custom, 'subchapter'); ?>"<?php if ($action == 'delete') echo ' readonly="readonly"'; ?>></td>
 				</tr>
 			</table>
 			
 			<p class="submit">
-				<input type="submit" class="button-primary" name="save" value="<?php echo ucfirst($action); ?> Project">
+				<input type="submit" class="button-primary" name="save" value="<?php echo ucfirst($action); ?> Projet">
 				<input type="hidden" name="wpmanga_nonce" value="<?php echo wp_create_nonce( plugin_basename( plugin_sDIR() . '/wpmanga.php' ) ); ?>">
 			</p>
 		</form>

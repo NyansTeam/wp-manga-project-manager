@@ -43,9 +43,9 @@ function enqueue_style(){
  */
 class Latest_Releases_Widget extends WP_Widget {
 	function Latest_Releases_Widget() {
-		$widget_ops = array('classname' => 'latest-releases', 'description' => 'Display Latest Releases (by date).');
+		$widget_ops = array('classname' => 'latest-releases', 'description' => 'Affiche les dernières Releases (par date).');
 		$control_ops = array('width' => 220, 'height' => 350, 'id_base' => 'latest-releases');
-		$this->WP_Widget('latest-releases', 'Latest Releases', $widget_ops, $control_ops);
+		$this->WP_Widget('latest-releases', 'Dernières Releases', $widget_ops, $control_ops);
 	}
 
 	function widget($args, $instance) {
@@ -60,7 +60,7 @@ class Latest_Releases_Widget extends WP_Widget {
 		if ($title) {
 			echo $before_title . $title . $after_title;
 		} else {
-			echo $before_title . __('Latest Releases') . $after_title;
+			echo $before_title . __('Dernières Releases') . $after_title;
 		}
 		if (file_exists(get_sTemplate('widget-latest-releases.php'))) {
 			include(get_sTemplate('widget-latest-releases.php'));
@@ -73,11 +73,11 @@ class Latest_Releases_Widget extends WP_Widget {
 		if ($numofposts == "") $numofposts = 3;
 	?>
 		<p>
-			<label for="<?php echo $this->get_field_id('title'); ?>">Title:</label>
+			<label for="<?php echo $this->get_field_id('title'); ?>">Titre:</label>
 			<input class="widefat" type="text" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo $instance['title']; ?>" />
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('numofposts'); ?>">Number of Releases to show:</label>
+			<label for="<?php echo $this->get_field_id('numofposts'); ?>">Nombre de Releases à afficher:</label>
 			<input type="text" size="3" id="<?php echo $this->get_field_id('numofposts'); ?>" name="<?php echo $this->get_field_name('numofposts'); ?>" value="<?php echo $numofposts; ?>" />
 		</p>
 	<?php
@@ -123,7 +123,7 @@ class Chapters_Progress_Widget extends WP_Widget {
 			<input class="widefat" type="text" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo $instance['title']; ?>" />
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('projectCategory'); ?>">Show only projects of this Category (optional) :</label>
+			<label for="<?php echo $this->get_field_id('projectCategory'); ?>">Afficher seulement les projets de cette catégorie (optionnel) :</label>
 			
 			<select name="<?php echo $this->get_field_name('projectCategory'); ?>" id="<?php echo $this->get_field_id('projectCategory'); ?>" >
 				<?php

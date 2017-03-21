@@ -25,13 +25,13 @@
 ?>
 
 		<?php if ($project->mature) : ?>
-		<div id="project-warning">This project contains mature content and is rated R-18.</div>
+		<div id="project-warning">Ce projet contiens des scènes explicites et est classé PEGI-18.</div>
 		<?php endif; ?>
 
 		<div id="project-container">
 			<div class="item">
 				<img title="<?php echo $project->title; if ($project->title_alt) echo "&nbsp; &#12302; {$project->title_alt} &#12303;"; ?>" src="<?php echo $project->image; ?>">
-				<?php if ($project->mature) : ?><div class="mature">R-18</div><?php endif; ?>
+				<?php if ($project->mature) : ?><div class="mature">PEGI-18</div><?php endif; ?>
 			</div>
 			
 			<div id="project-details">
@@ -149,7 +149,7 @@
 									}
 									
 									$volumeUrl = get_sReaderLink($project, $vol_release);
-									if ($volumeUrl) echo '&nbsp; <a href="' . $volumeUrl . '" target="_blank">LEL</a>';
+									if ($volumeUrl) echo '&nbsp; <a href="' . $volumeUrl . '" target="_blank">LeL</a>';
 								echo '</span>';
 							}
 							?></span></div>
