@@ -19,7 +19,7 @@ function wpmanga_dataCover() {
 	
 	if ( isset( $_POST['wpmanga_nonce'] ) ) {
 		if ( !wp_verify_nonce( $_POST['wpmanga_nonce'], plugin_basename( plugin_sDIR() . '/wpmanga.php' ) ) ) {
-			echo '<div class="error"><p>Erreur: Échec de la vérification de sécurité.</p></div>';
+			echo '<div class="error"><p>Erreur: Ã‰chec de la vÃ©rification de sÃ©curitÃ©.</p></div>';
 		} else {
 			$_POST = array_map('trim', $_POST);
 			$_POST = array_map('stripslashes', $_POST);
@@ -32,27 +32,27 @@ function wpmanga_dataCover() {
 						$status = $wpdb->update($wpdb->prefix . 'projects_volumes', $data, array('id' => $_GET['id']));
 						
 						if ($status)
-							echo '<div class="updated"><p>Informations de couverture de tome mises à jour.</p></div>';
+							echo '<div class="updated"><p>Informations de couverture de tome mises Ã  jour.</p></div>';
 						else
-							echo '<div class="error"><p>Erreur: Échec de la mise à jour.</p></div>';
+							echo '<div class="error"><p>Erreur: Ã‰chec de la mise Ã  jour.</p></div>';
 						break;
 						
 					case 'delete':
 						$status = $wpdb->query($wpdb->prepare("DELETE FROM `{$wpdb->prefix}projects_volumes` WHERE `id` = '%d'", $_GET['id']));
 						
 						if ($status)
-							echo '<div class="updated"><p>Informations de couverture de tome effacées.</p></div>';
+							echo '<div class="updated"><p>Informations de couverture de tome effacÃ©es.</p></div>';
 						else
-							echo '<div class="error"><p>Erreur: Échec de la suppression d\'information.</p></div>';
+							echo '<div class="error"><p>Erreur: Ã‰chec de la suppression d\'information.</p></div>';
 						break;
 				
 					default:
 						$wpdb->insert($wpdb->prefix . 'projects_volumes', $data);
 						
 						if ( $wpdb->insert_id )
-							echo '<div class="updated"><p>Ajouté couverture de tome pour les releases. <a href="admin.php?page=manga/volume&action=edit&id=' . $wpdb->insert_id . '">Modifier les infos de couverture</a></p></div>';
+							echo '<div class="updated"><p>AjoutÃ© couverture de tome pour les releases. <a href="admin.php?page=manga/volume&action=edit&id=' . $wpdb->insert_id . '">Modifier les infos de couverture</a></p></div>';
 						else
-							echo '<div class="error"><p>Erreur: Échec d\'ajout de nouvelle couverture.</p></div>';
+							echo '<div class="error"><p>Erreur: Ã‰chec d\'ajout de nouvelle couverture.</p></div>';
 				}
 			} else {
 				echo '<div class="error"><p>Erreur: Veuillez remplir les champs requis.</p></div>';
