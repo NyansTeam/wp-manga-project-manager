@@ -54,7 +54,8 @@ function wpmanga_dataProject() {
 				}
 				
 				$custom_settings = json_encode(array('chapter' => $_POST['custom_chapter'], 'subchapter' => $_POST['custom_subchapter']));
-				$data = array('category' => $_POST['category'], 'slug' => wpmanga_getUrl($_POST['slug'], $_POST['title']), 'title' => $_POST['title'], 'title_alt' => $_POST['title_alt'], 'description' => $_POST['description'],'description_short' => $_POST['description_short'], 'author' => $_POST['author'], 'genre' => $_POST['genre'], 'status' => $_POST['status'], 'image' => $_POST['image'],'image_thumbnail' => $_POST['image_thumbnail'], 'team_origin' => $_POST['team_origin'], 'reader' => $_POST['reader'], 'url' => $_POST['url'], 'mature' => $_POST['mature'], 'custom' => $custom_settings);
+				$data = array('category' => $_POST['category'], 'slug' => wpmanga_getUrl($_POST['slug'], $_POST['title']), 'title' => $_POST['title'], 'title_alt' => $_POST['title_alt'], 'description' => $_POST['description'], 'author' => $_POST['author'], 'genre' => $_POST['genre'], 'status' => $_POST['status'], 'image' => $_POST['image'], 'reader' => $_POST['reader'], 'url' => $_POST['url'], 'mature' => $_POST['mature'], 'custom' => $custom_settings);
+//			$data = array('category' => $_POST['category'], 'slug' => wpmanga_getUrl($_POST['slug'], $_POST['title']), 'title' => $_POST['title'], 'title_alt' => $_POST['title_alt'], 'description' => $_POST['description'],'description_short' => $_POST['description_short'], 'author' => $_POST['author'], 'genre' => $_POST['genre'], 'status' => $_POST['status'], 'image' => $_POST['image'],'image_thumbnail' => $_POST['image_thumbnail'], 'team_origin' => $_POST['team_origin'], 'reader' => $_POST['reader'], 'url' => $_POST['url'], 'mature' => $_POST['mature'], 'custom' => $custom_settings);
 				
 				switch ($action) {
 					case 'edit':
