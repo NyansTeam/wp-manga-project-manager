@@ -1,7 +1,7 @@
 ## WP Manga Project Manager
 
 [![LICENSE](https://img.shields.io/badge/license-GPLv2-blue.svg)](LICENCE.md)
-[![MAXVERSION](https://img.shields.io/badge/wordpress-4.3.9-orange.svg)](#contributions)
+[![MAXVERSION](https://img.shields.io/badge/wordpress-4.8-green.svg)](#contributions)
 
 
 ### Description
@@ -12,7 +12,8 @@ Auteur original: [TEAM SEPTiCORE](http://web.archive.org/web/20130908060431/http
 
 
 ## BUGS CONNUS
-A PARTIR DE WORDPRESS 4.4.0, UN BUG EMPÊCHE L'AJOUT OU LA MODIFICATION DES PROJET/COUVERTURE/RELEASE
+Des tonnes et des tonnes de warnings si on met define('WP_DEBUG', true);
+À part ça, plus rien de bloquant pour le moment.
 
 
 ## Contributions
