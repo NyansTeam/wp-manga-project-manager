@@ -2,14 +2,14 @@
 
 /**
  * @package WP Manga Project Manager
- * @version 0.2.92
+ * @version 0.2.93
  */
 /*
 	Plugin Name: WP Manga Project Manager
 	Plugin URI: https://github.com/Albirew/wp-manga-project-manager
 	Description: WP Manga Project Manager allows administrators and editors to manage information regarding project and release information. This plugin allows the changes to be made throughout the database and avoids displaying inaccurate information to the users.
 	Author: TEAM SEPTiCORE
-	Version: 0.2.92
+	Version: 0.2.93
 	Author URI: http://web.archive.org/web/20130908060431/http://dev.xengi.org/blog/
 */
 
@@ -25,7 +25,7 @@ include('includes/wp_options.php');
 include('includes/wp_shortcode.php');
 include('includes/wp_widget.php');
 
-$wpmanga_plugin = "0.2.92";
+$wpmanga_plugin = "0.2.93";
 
 /**
  * Activates the Manga Project Manager Plugin.
