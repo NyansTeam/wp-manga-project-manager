@@ -112,7 +112,7 @@
 										echo '<span class="downloads">';
 											$downloads = get_sReleaseDownloads($release);
 											foreach ($downloads as $download => $value) {
-												$download = str_replace(array('download_depositfiles', 'download_fileserve', 'download_filesonic', 'download_mediafire', 'download_megaupload', 'download_pdf', 'download_irc'), array('DF', 'FSrv', 'FSnc', 'MF', 'MEGA', 'PDF', 'IRC'), $download);
+												$download = str_replace(array('download_depositfiles', 'download_fileserve', 'download_filesonic', 'download_mediafire', 'download_megaupload', 'download_pdf', 'download_irc'), array('DF', 'FSrv', 'FSnc', 'MF', 'MEGA', 'LeL', 'IRC'), $download);
 												
 												if ($value) {
 													if ($download == 'IRC')
@@ -138,7 +138,7 @@
 								echo '<span class="downloads">';
 									$downloads = get_sReleaseDownloads($vol_release);
 									foreach ($downloads as $download => $value) {
-										$download = str_replace(array('download_depositfiles', 'download_fileserve', 'download_filesonic', 'download_mediafire', 'download_megaupload', 'download_pdf', 'download_irc'), array('DF', 'FSrv', 'FSnc', 'MF', 'Télécharger', 'PDF', 'IRC'), $download);
+										$download = str_replace(array('download_depositfiles', 'download_fileserve', 'download_filesonic', 'download_mediafire', 'download_megaupload', 'download_pdf', 'download_irc'), array('DF', 'FSrv', 'FSnc', 'MF', 'Télécharger', 'LeL', 'IRC'), $download);
 										
 										if ($value) {
 											if ($download == 'IRC')
@@ -176,7 +176,7 @@
 								echo '<span class="downloads">';
 									$downloads = get_sReleaseDownloads($release);
 									foreach ($downloads as $download => $value) {
-										$download = str_replace(array('download_depositfiles', 'download_fileserve', 'download_filesonic', 'download_mediafire', 'download_megaupload', 'download_pdf', 'download_irc'), array('DF', 'FSrv', 'FSnc', 'MF', 'MEGA', 'PDF', 'IRC'), $download);
+										$download = str_replace(array('download_depositfiles', 'download_fileserve', 'download_filesonic', 'download_mediafire', 'download_megaupload', 'download_pdf', 'download_irc'), array('DF', 'FSrv', 'FSnc', 'MF', 'MEGA', 'LeL', 'IRC'), $download);
 										
 										if ($value) {
 											if ($download == 'IRC')
