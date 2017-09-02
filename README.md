@@ -7,7 +7,7 @@
 ### Description
 WP Manga Project Manager permet aux administrateurs et aux éditeurs de gérer les information concernant les projet et leurs release. Ce plugin permet aux changements d'être faits via une base de données et permet d'avoir des information à jour sur tout le site dés leur ajout.
 
-Version: 0.2.92
+Version: 0.2.93
 Auteur original: [TEAM SEPTiCORE](http://web.archive.org/web/20130908060431/http://dev.xengi.org/blog/)
 
 
