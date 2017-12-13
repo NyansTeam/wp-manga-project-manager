@@ -210,7 +210,7 @@ function wpmanga_dataRelease() {
 										else
 											echo "<option value='{$language}'>{$description}</option>";
 									} else {
-										if ('en' == $language)
+										if ('fr' == $language)
 											echo "<option value='{$language}' selected='selected'>{$description}</option>";
 										else
 											echo "<option value='{$language}'>{$description}</option>";
