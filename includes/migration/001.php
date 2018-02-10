@@ -61,11 +61,11 @@ if ( $wpdb->get_var("SHOW TABLES LIKE '{$table_category}'") != $table_category )
 	$wpdb->query($structure);
 	
 	// Default Categories
-	$wpdb->insert($table_category,	array('name' => 'Ongoing', 'description' => 'Ongoing Project(s)', 'index' => 1) );
-	$wpdb->insert($table_category,	array('name' => 'Completed', 'description' => 'Completed Project(s)', 'index' => 2) );
-	$wpdb->insert($table_category,	array('name' => 'Future Project', 'description' => 'Future Project(s)', 'index' => 3) );
-	$wpdb->insert($table_category,	array('name' => 'On Hiatus', 'description' => 'Stalled Project(s)', 'index' => 4) );
-	$wpdb->insert($table_category,	array('name' => 'Dropped', 'description' => 'Dropped Project(s)', 'index' => 5) );
+	$wpdb->insert($table_category,	array('name' => 'En cours', 'description' => 'Projet(s) en cours', 'index' => 1) );
+	$wpdb->insert($table_category,	array('name' => 'Complet', 'description' => 'Projet(s) terminés', 'index' => 2) );
+	$wpdb->insert($table_category,	array('name' => 'Future Projet', 'description' => 'Projet(s) en préparation', 'index' => 3) );
+	$wpdb->insert($table_category,	array('name' => 'En pause', 'description' => 'Projet(s) à l\'arrêt', 'index' => 4) );
+	$wpdb->insert($table_category,	array('name' => 'Abandonné', 'description' => 'Projet(s) abandonné(s)', 'index' => 5) );
 }
 
 if ( $wpdb->get_var("SHOW TABLES LIKE '{$table_volumes}'") != $table_volumes ) {
