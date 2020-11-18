@@ -48,6 +48,9 @@ ul.latest-release-list li {
 	visibility: hidden;
 	padding: 0 0 0 5px;
 }
+#release-download-wrapper:hover .release-download-icons {
+	visibility: visible;
+}
 #release-download-wrapper .release-download-icons li {
 	display: inline;
 	margin-right: 5px;
